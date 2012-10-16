@@ -1,0 +1,556 @@
+/*
+ * Copyright (c) 2008, 2009  Dario Freddi <drf@chakra-project.org>
+ *               2010        Drake Justice <djustice.kde@gmail.com>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ */
+
+#include <QDebug>
+
+#include <QFile>
+#include <QMovie>
+#include <QProcess>
+#include <QRegExpValidator>
+
+#include <KIcon>
+#include <KIO/Job>
+
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <KMessageBox>
+
+#include <config-tribe.h>
+
+#include "../installationhandler.h"
+#include "configpage.h"
+
+
+const QString tI = "/tmp/tribe_initcpio_enable_";
+QStringList tmpInitRd = QStringList() << QString(tI + "usb") << QString(tI + "firewire")
+                                      << QString(tI + "pcmcia") << QString(tI + "nfs")
+                                      << QString(tI + "softwareraid") << QString(tI + "softwareraidmdp")
+                                      << QString(tI + "lvm2") << QString(tI + "encrypted");
+
+
+ConfigPage::ConfigPage(QWidget *parent)
+        : AbstractPage(parent),
+        m_install(InstallationHandler::instance())
+{
+    m_process = new QProcess(this);
+    m_process->setProcessChannelMode(QProcess::MergedChannels);
+    connect(m_process, SIGNAL(finished(int)), this, SLOT(processComplete()));
+
+    m_timer = new QTimer(this);
+
+    m_soFarDownloadSize = 0;
+    m_soFarPkgDownloadSize = 0;
+    m_downloadSize = 0;
+    m_currentPage = 0;
+}
+
+ConfigPage::~ConfigPage()
+{
+}
+
+void ConfigPage::createWidget()
+{
+    qDebug() << "Load configpage";
+    ui.setupUi(this);
+
+    ui.changeAppearanceButton->setVisible(false);
+
+    // page connections
+    connect(ui.downloadBundlesButton, SIGNAL(clicked()), this, SLOT(setDownloadBundlesPage()));
+    connect(ui.changeAppearanceButton, SIGNAL(clicked()), this, SLOT(setChangeAppearancePage()));
+    connect(ui.initRamDiskButton, SIGNAL(clicked()), this, SLOT(setInitRamdiskPage()));
+    connect(ui.bootloaderSettingsButton, SIGNAL(clicked()), this, SLOT(setBootloaderPage()));
+    connect(ui.cancelButton, SIGNAL(clicked()), this, SLOT(cancelButtonClicked()));
+    // bundle download
+    connect(ui.bundlesDownloadButton, SIGNAL(clicked()), this, SLOT(bundlesDownloadButtonClicked()));
+    // generate initrd
+    connect(ui.generateInitRamDiskButton, SIGNAL(clicked()), this, SLOT(generateInitRamDisk()));
+
+    // page icons
+    ui.downloadBundlesButton->setIcon(KIcon("x-cb-bundle"));
+    ui.changeAppearanceButton->setIcon(KIcon("preferences-desktop-color"));
+    ui.initRamDiskButton->setIcon(KIcon("cpu"));
+    ui.bootloaderSettingsButton->setIcon(KIcon("go-first"));
+    ui.cancelButton->setIcon(KIcon("dialog-cancel"));
+    // bundle download
+    ui.bundlesDownloadButton->setIcon(KIcon("download"));
+    // generate initrd
+    ui.generateInitRamDiskButton->setIcon(KIcon("debug-run"));
+
+    // remove the initrd tmp files
+    QProcess::execute("bash -c \"rm " + tmpInitRd.join(" ") + " > /dev/null 2>&1\"");
+
+    qDebug() << "Check for internet connection";
+    // first call to check internet connection
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+             this, SLOT(handleNetworkData(QNetworkReply*)));
+    networkManager.get(QNetworkRequest(QString("http://chakra-project.org")));
+
+    // check installed kde version
+    /* QProcess proc;
+    proc.start("pacman -Qi kde-common --noconfirm");
+    proc.waitForFinished();
+
+    QList<QByteArray> pacmanLines = proc.readAllStandardOutput().split('\n');
+    QList<QByteArray> versionLine(pacmanLines[1].split(':'));
+    QList<QByteArray> versionString(versionLine[1].split('-'));
+
+    QString pkgver(versionString[0].trimmed());
+    QString pkgrel(versionString[1].trimmed());
+    qDebug() << "KDE pkgver:" << pkgver << "pkgrel:" << pkgrel;
+
+    // check remote kde version
+    proc.start("pacman -Si kde-common --noconfirm");
+    proc.waitForFinished();
+
+    pacmanLines = proc.readAllStandardOutput().split('\n');
+    versionLine = pacmanLines[2].split(':');
+    versionString = versionLine[1].split('-');
+
+    QString remote_pkgver(versionString[0].trimmed());
+    QString remote_pkgrel(versionString[1].trimmed());
+    qDebug() << "KDE remote_pkgver:" << remote_pkgver << "remote_pkgrel:" << remote_pkgrel;
+
+    // disable download if no match
+    //if (pkgver != remote_pkgver)
+    //  ui.bundlesDownloadButton->setEnabled(false);
+
+    // populate BundlesList */
+    populateBundlesList();
+}
+
+void ConfigPage::incomingData(KIO::Job* job, QByteArray data)
+{
+    /*
+     * A harmless warning from GCC is generated here due to the signed/unsigned integer comparison.
+     * The warning is harmless because the integer comparison is an inequality check.
+     */
+    if (ui.progressBar->maximum() != job->totalAmount(KJob::Bytes))
+        ui.progressBar->setMaximum(job->totalAmount(KJob::Bytes));
+
+    if (data.isNull()) {
+        if (job->processedAmount(KJob::Bytes) == job->totalAmount(KJob::Bytes))
+            return;
+    }
+
+    if (m_incomingIncr == m_incomingList.count())
+        return;
+
+    if (m_incomingExtension == ".jpeg") {
+        QFile x("/tmp/" + m_incomingList.at(m_incomingIncr) + m_incomingExtension);
+        if (x.open(QIODevice::Append)) {
+            x.write(data);
+            x.flush();
+            x.close();
+        }
+    } else {
+        ui.progressBar->setValue(job->processedAmount(KJob::Bytes));
+        ui.progressLabel->setText(i18n("Downloading") + " " + m_incomingList.at(m_incomingIncr));
+        QFile x(QString(INSTALLATION_TARGET) + "/home/" + m_install->userLoginList().first() + "/Desktop/" + m_incomingList.at(m_incomingIncr));
+        if (x.open(QIODevice::Append)) {
+            x.write(data);
+            x.flush();
+            x.close();
+        }
+    }
+}
+
+void ConfigPage::result(KJob* job)
+{
+    m_incomingIncr++;
+
+    if (m_incomingIncr == m_incomingList.count()) {
+        m_incomingIncr = 0;
+        m_incomingList.clear();
+        if (m_incomingExtension != ".jpeg")
+            ui.stackedWidget->setCurrentIndex(2);
+            m_currentPage = 2;
+            ui.bundlesDownloadButton->setEnabled(true);
+            enableNextButton(true);
+        m_incomingExtension = "";
+        return;
+    }
+
+    if (job->error()) {
+        qDebug() << ">> m_job error " + job->errorString();
+        ui.stackedWidget->setCurrentIndex(m_currentPage);
+        ui.bundlesDownloadButton->setEnabled(true);
+        enableNextButton(true);
+        return;
+    }
+
+    if (m_incomingExtension == ".jpeg") {
+        KUrl r(QUrl("http://chakra-project.org/packages/screenshots/" +
+                    m_incomingList.at(m_incomingIncr) + m_incomingExtension));
+        m_job = KIO::get(r, KIO::Reload, KIO::Overwrite | KIO::HideProgressInfo);
+        connect(m_job, SIGNAL(data(KIO::Job*,QByteArray)), this, SLOT(incomingData(KIO::Job*, QByteArray)));
+        connect(m_job, SIGNAL(result(KJob*)), this, SLOT(result(KJob*)));
+    } else {
+        KUrl r(QUrl("http://mirror.rit.edu/kdemod/bundles" + m_currentBranch + "/" +
+                    m_currentArch + "/" + m_incomingList.at(m_incomingIncr)));
+        m_job = KIO::get(r, KIO::Reload, KIO::Overwrite | KIO::HideProgressInfo);
+        connect(m_job, SIGNAL(data(KIO::Job*,QByteArray)), this, SLOT(incomingData(KIO::Job*, QByteArray)));
+        connect(m_job, SIGNAL(result(KJob*)), this, SLOT(result(KJob*)));
+    }
+}
+
+void ConfigPage::populateBundlesList()
+{
+    qDebug() << "BundlesList start";
+    ui.bundlesList->clear();
+
+    QStringList bundleDataList;
+    QFile bundlelistFile(QString(CONFIG_INSTALL_PATH) + "/configPageBundleData");
+
+    if (bundlelistFile.open(QIODevice::ReadOnly)) {
+        bundleDataList = QString(bundlelistFile.readAll()).trimmed().split("\n");
+    } else {
+        qDebug() << ">> bundlelistFile error: " + bundlelistFile.errorString();
+    }
+
+    if (bundleDataList.isEmpty())
+        return;
+
+    foreach (QString pkg, bundleDataList) {
+        QListWidgetItem *item = new QListWidgetItem(ui.bundlesList);
+        item->setSizeHint(QSize(160, 36));
+        item->setText(pkg.split("::").at(1));
+        item->setCheckState(Qt::Unchecked);
+        item->setData(60, pkg.split("::").at(0));
+        item->setData(61, pkg.split("::").at(2));
+        item->setIcon(QIcon(QString(CONFIG_INSTALL_PATH) + "/" + item->data(60).toString() + ".png"));
+        ui.bundlesList->addItem(item);
+    }
+    qDebug() << "BundlesList populated";
+}
+
+void ConfigPage::cancelButtonClicked()
+{
+    delete m_process;
+    m_process = new QProcess(this);
+    m_process->setProcessChannelMode(QProcess::MergedChannels);
+    connect(m_process, SIGNAL(finished(int)), this, SLOT(processComplete()));
+
+    ui.bundlesDownloadButton->setEnabled(true);
+    enableNextButton(true);
+    ui.stackedWidget->setCurrentIndex(m_currentPage);
+}
+
+void ConfigPage::handleNetworkData(QNetworkReply *networkReply)
+{
+  // no error -> internet access
+  if (!networkReply->error())
+    m_currentOnlineStatus = "Online";
+  else
+    m_currentOnlineStatus = "Offline";
+
+  networkReply->deleteLater();
+}
+
+void ConfigPage::bundlesDownloadButtonClicked()
+{
+    connect(&networkManager, SIGNAL(finished(QNetworkReply*)),
+             this, SLOT(handleNetworkData(QNetworkReply*)));
+
+    //use the url of the preferred mirror
+    networkManager.get(QNetworkRequest(QString("http://chakra-project.org")));
+    if (m_currentOnlineStatus == "Offline") {
+        QString completeMessage = i18n("Sorry, you have no internet connection at the moment \n"
+                                       "Will stop bundle(s) installation now");
+
+        KDialog *dialog = new KDialog(this, Qt::FramelessWindowHint);
+        dialog->setButtons(KDialog::Ok);
+        dialog->setModal(true);
+        bool retbool;
+
+        KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, completeMessage,
+                                       QStringList(), QString(), &retbool, KMessageBox::Notify);
+        return;
+    }
+
+    m_incomingList.clear();
+    m_incomingExtension = "";
+    m_incomingIncr = 0;
+
+    ui.bundlesDownloadButton->setEnabled(false);
+    enableNextButton(false);
+    ui.stackedWidget->setCurrentIndex(5);
+    ui.progressBar->setValue(0);
+    ui.progressLabel->setText("Waiting for server...");
+
+    QStringList checkedList;
+
+    for ( int i = 0; i < ui.bundlesList->count(); i++ ) {
+        if (ui.bundlesList->item(i)->checkState() == Qt::Checked) {
+            checkedList.append(ui.bundlesList->item(i)->data(60).toString());
+        }
+    }
+
+    m_process = new QProcess(this);
+    m_process->setProcessChannelMode(QProcess::MergedChannels);
+
+    // check stable/testing
+    QFile pacmanConf("/etc/pacman.conf", this);
+    pacmanConf.open(QIODevice::ReadOnly);
+    QString sPacmanConf(pacmanConf.readAll());
+    pacmanConf.close();
+
+    foreach (QString line, sPacmanConf.split("\n")) {
+        if (line.contains("-testing")) {
+            if (line.simplified().trimmed().startsWith("#"))
+                continue;
+
+            m_currentBranch = "-testing";
+        }
+    }
+
+    // check uname for arch
+    m_process->start("uname -m");
+    m_process->waitForFinished();
+    if (m_process->readAll().contains("x86_64")) {
+        m_currentArch = "x86_64";
+    } else {
+        m_currentArch = "i686";
+    }
+
+    // call rsync
+    foreach (QString bundle, checkedList) {
+        m_process->start("bash -c \"echo $(rsync -avh --list-only cinstall@chakra-project.org::cinstall/bundles" +
+                        m_currentBranch + "/" + m_currentArch +
+                        "/" + bundle + "*  | cut -d\':\' -f3 | cut -d\' \' -f2)\"");
+        m_process->waitForFinished();
+        QString result(m_process->readAll());
+        if (result.simplified().trimmed().split("\n").count() > 1) {
+            m_incomingList.append(result.simplified().trimmed().split("\n").first().simplified().trimmed().split(" ").at(1));
+        } else {
+            m_incomingList.append(result.simplified().trimmed().split(" ").at(1));
+        }
+    }
+
+    KUrl r(QUrl("http://mirror.rit.edu/kdemod/bundles" + m_currentBranch + "/" +
+                    m_currentArch + "/" + m_incomingList.at(m_incomingIncr)));
+    m_job = KIO::get(r, KIO::Reload, KIO::Overwrite | KIO::HideProgressInfo);
+    connect(m_job, SIGNAL(data(KIO::Job*,QByteArray)), this, SLOT(incomingData(KIO::Job*, QByteArray)));
+    connect(m_job, SIGNAL(result(KJob*)), this, SLOT(result(KJob*)));
+}
+
+void ConfigPage::updatePacmanProgress()
+{
+    QString str = QString::fromUtf8(m_process->readAll());
+    QRegExp targetRegEx("(*/*)");
+    targetRegEx.setPatternSyntax(QRegExp::Wildcard);
+
+    foreach (QString line, str.split("\n")) {
+        if (line.contains(i18n("loading package data..."))) {
+            ui.progressLabel->setText(i18n("Loading package data..."));
+        } else if (line.contains(i18n("checking dependencies..."))) {
+            ui.progressLabel->setText(i18n("Checking dependencies..."));
+        } else if (line.contains(i18n("resolving dependencies..."))) {
+            ui.progressLabel->setText(i18n("Resolving dependencies..."));
+        } else if (line.contains(i18n("checking package integrity..."))) {
+            ui.progressLabel->setText(i18n("Checking package integrity..."));
+        } else if (line.contains(i18n("Total Download Size:"))) {
+            int mb = line.simplified().split(" ").at(3).split(".").at(0).toInt();
+            int kb = line.simplified().split(" ").at(3).split(".").at(1).toInt();
+            m_downloadSize = (mb * 1000) + (kb * 10);
+            ui.progressBar->setMaximum(m_downloadSize);
+        } else if (line.contains("/s 0")) {
+            ui.progressLabel->setText(i18n("Downloading") + " " + m_currentPkgName);
+
+            QString cDld = line.simplified().split(" ").at(1);
+            m_currentPkgName = line.simplified().split(" ").at(0);
+            cDld.append(" ");
+            if (cDld.contains("K ")) {
+                if (cDld.contains("0.0K")) {
+                    m_soFarDownloadSize += m_soFarPkgDownloadSize;
+                    if (m_soFarDownloadSize >= ui.progressBar->value())
+                        ui.progressBar->setValue(m_soFarDownloadSize);
+                    m_soFarPkgDownloadSize = 0;
+                } else {
+                    m_soFarPkgDownloadSize = cDld.split(".").at(0).toInt();
+                    if (m_soFarDownloadSize >= ui.progressBar->value())
+                        ui.progressBar->setValue(m_soFarDownloadSize);
+                }
+            } else if (cDld.contains("M ")) {
+                m_soFarPkgDownloadSize = cDld.split(".").at(0).toInt() * 1000;
+                if (m_soFarDownloadSize >= ui.progressBar->value())
+                    ui.progressBar->setValue(m_soFarDownloadSize);
+            }
+
+            int v = m_soFarDownloadSize + m_soFarPkgDownloadSize;
+            if (v >= ui.progressBar->value())
+                ui.progressBar->setValue(v);
+        } else if (line.left(6) == "kdesu(") {
+
+        } else if (line.contains(targetRegEx)) {
+            ui.progressLabel->setText(str.simplified().split(" (").at(0));
+            m_currentPkgName = str.simplified();
+            ui.progressBar->setMaximum(str.split("/").at(1).split(")").at(0).toInt());
+            ui.progressBar->setValue(str.split("/").at(0).split("(").at(1).toInt());
+        }
+    }
+}
+
+void ConfigPage::processComplete()
+{
+    // clean-up
+    QProcess::execute("umount -v " + QString(INSTALLATION_TARGET) + "/proc " +
+                                     QString(INSTALLATION_TARGET) + "/sys "  +
+                                     QString(INSTALLATION_TARGET) + "/dev/pts " +
+                                     QString(INSTALLATION_TARGET) + "/dev");
+    // re-enable buttons
+    enableNextButton(true);
+
+    m_timer->stop();
+}
+
+void ConfigPage::setDownloadBundlesPage()
+{
+    if (ui.stackedWidget->currentIndex() != 2) {
+        ui.stackedWidget->setCurrentIndex(2);
+        m_currentPage = 2;
+        ui.currentPageLabel->setText(i18n("Download Popular Bundles"));
+    } else {
+        ui.stackedWidget->setCurrentIndex(0);
+        m_currentPage = 0;
+        ui.currentPageLabel->setText("");
+    }
+}
+
+void ConfigPage::setChangeAppearancePage()
+{
+
+}
+
+void ConfigPage::setBootloaderPage()
+{
+    if (ui.stackedWidget->currentIndex() != 4) {
+        ui.stackedWidget->setCurrentIndex(4);
+        m_currentPage = 4;
+        ui.currentPageLabel->setText(i18n("Bootloader Settings"));
+    } else {
+        ui.stackedWidget->setCurrentIndex(0);
+        m_currentPage = 0;
+        ui.currentPageLabel->setText("");
+    }
+}
+
+void ConfigPage::setInitRamdiskPage()
+{
+    if (ui.stackedWidget->currentIndex() != 1) {
+        ui.stackedWidget->setCurrentIndex(1);
+        m_currentPage = 1;
+        ui.currentPageLabel->setText(i18n("Customize Initial Ramdisk"));
+    } else {
+        ui.stackedWidget->setCurrentIndex(0);
+        m_currentPage = 0;
+        ui.currentPageLabel->setText("");
+    }
+}
+
+void ConfigPage::generateInitRamDisk()
+{
+    ui.generateInitRamDiskButton->setEnabled(false);
+    enableNextButton(false);
+    m_busyAnim = new QMovie(":Images/images/busywidget.gif");
+    m_busyAnim->start();
+    ui.initRdBusyLabel->setMovie(m_busyAnim);
+    ui.initRdBusyLabel->setVisible(true);
+
+    if (ui.usb->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(0));
+    if (ui.firewire->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(1));
+    if (ui.pcmcia->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(2));
+    if (ui.nfs->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(3));
+    if (ui.raid->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(4));
+    if (ui.mdp->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(5));
+    if (ui.lvm2->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(6));
+    if (ui.encrypted->isChecked())
+        QProcess::execute("touch " + tmpInitRd.at(7));
+
+    QString command  = QString("sh " + QString(SCRIPTS_INSTALL_PATH) +
+                               "/postinstall.sh --job create-initrd %1")
+                               .arg(m_install->m_postcommand);
+    connect(m_process, SIGNAL(finished(int)), this, SLOT(initRdGenerationComplete()));
+    m_process->start(command);
+}
+
+void ConfigPage::initRdGenerationComplete()
+{
+    ui.generateInitRamDiskButton->setEnabled(true);
+    enableNextButton(true);
+    ui.initRdBusyLabel->setVisible(false);
+
+    // remove tmp files
+    QProcess::execute("bash -c \"rm " + tmpInitRd.join(" ") + " > /dev/null 2>&1\"");
+}
+
+void ConfigPage::bootloaderInstalled(int exitCode, QProcess::ExitStatus exitStatus)
+{
+    Q_UNUSED(exitStatus)
+
+    if (exitCode == 0) {
+        qDebug() << ">> GRUB2: Exitcode " + exitCode;
+        qDebug() << ">> GRUB2: Setup finished without any errors...";
+        emit deleteProgressWidget();
+        emit goToNextStep();
+    } else {
+        qDebug() << ">> GRUB2: Exitcode " + exitCode;
+        qDebug() << ">> GRUB2: Setup might got wrong...";
+        QString completeMessage = i18n("Bootloader-Setup finished with Exitcode: %1\n"
+                                       "Some might went wrong. Before reboot it is recommended \n"
+                                       "to check %2/boot/grub/grub.cfg. \n"
+                                       ).arg(exitCode).arg(INSTALLATION_TARGET);
+
+        KDialog *dialog = new KDialog(this, Qt::FramelessWindowHint);
+        dialog->setButtons(KDialog::Ok);
+        dialog->setModal(true);
+        bool retbool;
+
+        KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, completeMessage,
+                                       QStringList(), QString(), &retbool, KMessageBox::Notify);
+        emit deleteProgressWidget();
+        emit goToNextStep();
+    }
+}
+
+void ConfigPage::aboutToGoToNext()
+{
+    ui.stackedWidget->setCurrentIndex(0);
+    m_currentPage = 0;
+
+    if (!ui.bootloaderCheckBox->isChecked()) {
+        emit goToNextStep();
+        return;
+    }
+
+    emit showProgressWidget();
+    emit setProgressWidgetText(i18n("Installing bootloader..."));
+    emit setProgressWidgetBusy();
+
+    connect(m_install, SIGNAL(bootloaderInstalled(int, QProcess::ExitStatus)), SLOT(bootloaderInstalled(int, QProcess::ExitStatus)));
+
+    m_install->installBootloader(0, "0"); /// grub2 install
+}
+
+void ConfigPage::aboutToGoToPrevious()
+{
+    emit goToPreviousStep();
+}
+
+#include "configpage.moc"
