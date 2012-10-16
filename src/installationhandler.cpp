@@ -450,37 +450,45 @@ void InstallationHandler::postInstallDone(int eC, QProcess::ExitStatus eS)
             m_postjob = "download-doc";
             m_postlabel = i18n("Downloading and installing documentation packages...");
             percentage = 6;
+        } else if (m_postjob == "download-doc") {
+            m_postjob = "rcconf-l10n";
+            m_postlabel = i18n("Setting up localization...");
+            percentage = 7;
+        } else if (m_postjob == "rcconf-network") {
+            m_postjob = "create-fstab";
+            m_postlabel = i18n("Creating fstab...");
+            percentage = 10;
         } else if (m_postjob == "create-fstab") {
             m_postjob = "add-extra-mountpoint";
-            percentage = 7;
+            percentage = 11;
         } else if (m_postjob == "add-extra-mountpoint") {
             m_postjob = "setup-hardware";
             m_postlabel = i18n("Configuring hardware...");
-            percentage = 8;
+            percentage = 12;
         } else if (m_postjob == "setup-hardware") {
             m_postjob = "create-initrd";
             m_postlabel = i18n("Creating initial ramdisk images...");
-            percentage = 9;
+            percentage = 13;
         } else if (m_postjob == "create-initrd") {
             m_postjob = "regenerate-locales";
             m_postlabel = i18n("Generating locales...");
-            percentage = 10;
+            percentage = 16;
         } else if (m_postjob == "regenerate-locales") {
             m_postjob = "cleanup-l10n";
             m_postlabel = i18n("Removing unused localizations...");
-            percentage = 11;
+            percentage = 17;
         } else if (m_postjob == "cleanup-l10n") {
             m_postjob = "cleanup-drivers";
             m_postlabel = i18n("Removing unused drivers...");
-            percentage = 12;
+            percentage = 18;
         } else if (m_postjob == "cleanup-drivers") {
             m_postjob = "cleanup-etc";
             m_postlabel = i18n("Finishing up...");
-            percentage = 13;
+            percentage = 19;
         } else if (m_postjob == "cleanup-etc") {
             m_postjob = "jobcomplete";
             m_postlabel = i18n("Installation complete!");
-            percentage = 14;
+            percentage = 20;
         }
 
 
