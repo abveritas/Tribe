@@ -240,9 +240,6 @@ case "$job" in
 		download-l10n)
 			job_download_l10n
 		;;
-		download-doc)
-			job_download_doc
-		;;
 		create-fstab)
 			job_create_fstab
 		;;

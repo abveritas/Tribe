@@ -316,7 +316,7 @@ void InstallationHandler::populateCommandParameters()
     }
 
     if (m_doc) {
-        m_postcommand.append("--download-doc yes ");
+        m_postcommand.append("--download-doc no ");
     }
 
     if (m_configurePacman) {
