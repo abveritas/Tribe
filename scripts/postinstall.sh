@@ -203,11 +203,6 @@ while [ $# -gt 0 ]
                         shift 2
                         ;;
 
-                        --download-doc)
-                        download_doc=$2
-                        shift 2
-                        ;;
-
                         --kdelang)
                         kdelang=$2
                         shift 2
