@@ -450,14 +450,6 @@ void InstallationHandler::postInstallDone(int eC, QProcess::ExitStatus eS)
             m_postjob = "download-doc";
             m_postlabel = i18n("Downloading and installing documentation packages...");
             percentage = 6;
-        } else if (m_postjob == "download-doc") {
-            m_postjob = "rcconf-l10n";
-            m_postlabel = i18n("Setting up localization...");
-            percentage = 7;
-        } else if (m_postjob == "rcconf-network") {
-            m_postjob = "create-fstab";
-            m_postlabel = i18n("Creating fstab...");
-            percentage = 10;
         } else if (m_postjob == "create-fstab") {
             m_postjob = "add-extra-mountpoint";
             percentage = 11;
