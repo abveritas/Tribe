@@ -34,9 +34,6 @@ job_initialize_target()
 
 	msg "install /etc/resolv.conf"
 	cp -vf /etc/resolv.conf ${mountpoint}/etc/resolv.conf
-	
-	#msg "install /etc/machine-id"
-	#cp -vf /etc/machine-id ${mountpoint}/etc/machine-id
 
 	msg "install configs for root"
 	cp -vf /etc/skel/.bashrc ${mountpoint}/root/.bashrc
