@@ -240,6 +240,9 @@ case "$job" in
 		download-l10n)
 			job_download_l10n
 		;;
+		create-localtime)
+			job_create_localtime
+		;;
 		create-fstab)
 			job_create_fstab
 		;;
@@ -252,8 +255,8 @@ case "$job" in
 		regenerate-locales)
 			job_regenerate_locales
 		;;
-                install-grub2)
-                        job_install_grub2
+		install-grub2)
+			job_install_grub2
 		;;
 		configure-sudoers)
 			job_configure_sudoers
@@ -287,4 +290,3 @@ case "$job" in
 		;;
 esac
 }
-

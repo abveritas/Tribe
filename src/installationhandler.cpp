@@ -467,21 +467,25 @@ void InstallationHandler::postInstallDone(int eC, QProcess::ExitStatus eS)
             m_postlabel = i18n("Generating locales...");
             percentage = 10;
         } else if (m_postjob == "regenerate-locales") {
-            m_postjob = "cleanup-l10n";
+            m_postjob = "create-localtime";
             m_postlabel = i18n("Removing unused localizations...");
             percentage = 11;
+        } else if (m_postjob == "create-localtime") {
+            m_postjob = "cleanup-l10n";
+            m_postlabel = i18n("Symlinking localtime...");
+            percentage = 12;
         } else if (m_postjob == "cleanup-l10n") {
             m_postjob = "cleanup-drivers";
             m_postlabel = i18n("Removing unused drivers...");
-            percentage = 12;
+            percentage = 13;
         } else if (m_postjob == "cleanup-drivers") {
             m_postjob = "cleanup-etc";
             m_postlabel = i18n("Finishing up...");
-            percentage = 13;
+            percentage = 14;
         } else if (m_postjob == "cleanup-etc") {
             m_postjob = "jobcomplete";
             m_postlabel = i18n("Installation complete!");
-            percentage = 14;
+            percentage = 15;
         }
 
 
