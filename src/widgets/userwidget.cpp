@@ -14,6 +14,9 @@
 
 #include "avatardialog.h"
 #include "userwidget.h"
+extern "C" {
+  #include <pwquality.h>
+}
 
 
 UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
@@ -21,9 +24,6 @@ UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
     number = a_userNumber;
 
     ui.setupUi(this);
-
-    ui.extWidget->hide();
-    ui.rootPwWidget->hide();
 
     ui.passLine->setEchoMode(QLineEdit::Password);
     ui.confirmPassLine->setEchoMode(QLineEdit::Password);
@@ -40,13 +40,16 @@ UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
 
     if (number == 0) {
         autoLogin = true;
-        useRootPw = false;
+        useRootPw = true; // set this to true for the first user, so that he can manually set a password for root
         ui.autoLoginCheckBox->setChecked(true);
-        ui.rootUsesUserPwCheckBox->setChecked(true);
+        ui.rootUsesUserPwCheckBox->setChecked(false);
         ui.removeUser->setVisible(false);
     } else {
         autoLogin = false;
         ui.rootUsesUserPwCheckBox->setVisible(false);
+        ui.extWidget->hide();
+        ui.rootPwWidget->hide();
+
     }
 
     passwordsMatch = true;
@@ -54,6 +57,7 @@ UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
 
     connect(ui.loginLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
     connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
+    connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
     connect(ui.confirmPassLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
 
     connect(ui.userDetails, SIGNAL(clicked(bool)), this, SLOT(showDetails()));
@@ -149,6 +153,26 @@ void UserWidget::avatarClicked()
     m_avatarDialog->show();
     m_avatarDialog->setGeometry(QStyle::alignedRect(Qt::LeftToRight, Qt::AlignCenter, m_avatarDialog->size(), qApp->desktop()->availableGeometry()));
 }
+
+void UserWidget::updatePasswordStrengthBar(const QString& newpass_)
+{
+  // This code uses libpwquality to check the password's strength each time it changes and uses a QProgressBar to indicate how strong it is
+  // TODO: Maybe abstract libpwquality away, writing a wrapper with a Qtish API?
+  QByteArray byteArray = newpass_.toUtf8();
+  const char* cPassString = byteArray.constData();
+  void* auxerror;
+  int pwstrength = pwquality_check(pwquality_default_settings(), cPassString, NULL, NULL, &auxerror);
+  if (pwstrength < 0) {
+    const char* cAuxErrorInfo =  pwquality_strerror(NULL, 0, pwstrength, auxerror);
+    ui.passStrengthProgBar->reset();
+    ui.pwERRORLabel->setText(QString::fromUtf8(cAuxErrorInfo));
+    ui.pwERRORLabel->show();
+  } else {
+    ui.passStrengthProgBar->setValue(pwstrength);
+    ui.pwERRORLabel->hide();
+  }
+}
+
 
 void UserWidget::autoLoginToggled()
 {
