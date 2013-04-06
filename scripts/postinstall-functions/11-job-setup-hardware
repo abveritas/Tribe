@@ -1,0 +1,116 @@
+#!/bin/bash
+
+job_setup_hardware()
+{
+
+	msg_job_start "job_setup_hardware"
+
+	# remove any db.lck
+	/bin/rm -f ${mountpoint}/var/lib/pacman/db.lck
+
+	# setup alsa volume levels
+	msg "setup alsa config"
+	if [ -e "/etc/asound.state" ] ; then
+		cp -v -a -f /etc/asound.state ${mountpoint}/etc/asound.state
+	fi
+
+	# alsa blacklist for the pc speaker
+	if [ -e "/etc/modprobe.d/alsa_blacklist.conf" ] ; then
+		cp -v -a -f /etc/modprobe.d/alsa_blacklist.conf ${mountpoint}/etc/modprobe.d/alsa_blacklist.conf
+	fi
+
+	# blacklist for broken realtek nics
+	if [ -e "/etc/modprobe.d/realtek_blacklist.conf" ] ; then
+		cp -v -a -f /etc/modprobe.d/realtek_blacklist.conf ${mountpoint}/etc/modprobe.d/realtek_blacklist.conf
+	fi
+
+	# setup proprietary drivers, if detected
+	msg "setup proprietary drivers"
+	if [ -e "/tmp/nvidia" ] ; then
+		msg "nvidia detected"
+
+		msg "removing unneeded packages"
+		/usr/bin/pacman -r ${mountpoint} -Rdd libgl --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd nouveau-dri --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-nv --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-nouveau --noconfirm
+        msg "installing driver"
+		if [[ "${netinst}" == "yes" ]]; then
+		    /usr/bin/pacman -r ${mountpoint} -S nvidia-utils nvidia --noconfirm
+		else
+            /usr/bin/pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/nvidia-utils-31* --noconfirm
+            /usr/bin/pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/nvidia-31* --noconfirm
+        fi
+
+	elif [ -e "/tmp/nvidia-304xx" ] ; then
+		msg "nvidia-304xx detected"
+
+		msg "removing unneeded packages"
+		/usr/bin/pacman -r ${mountpoint} -Rdd libgl --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd nouveau-dri --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-nv --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-nouveau --noconfirm
+		msg "installing driver"
+        if [[ "${netinst}" == "yes" ]]; then
+            /usr/bin/pacman -r ${mountpoint} -S nvidia-304xx nvidia-304xx-utils --noconfirm
+        else
+            pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/nvidia-304xx* --noconfirm
+        fi
+
+	elif [ -e "/tmp/nvidia-173xx" ] ; then
+		msg "nvidia-173xx detected"
+
+		msg "removing unneeded packages"
+		/usr/bin/pacman -r ${mountpoint} -Rdd libgl --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd nouveau-dri --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-nv --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-nouveau --noconfirm
+		msg "installing driver"
+        if [[ "${netinst}" == "yes" ]]; then
+            /usr/bin/pacman -r ${mountpoint} -S nvidia-173xx nvidia-173-utils --noconfirm
+        else
+            pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/nvidia-173xx* --noconfirm
+        fi
+
+	elif [ -e "/tmp/catalyst" ] ; then
+		msg "catalyst detected"
+
+		msg "removing unneeded packages"
+		# remove conflicting packages
+		/usr/bin/pacman -r ${mountpoint} -Rdd libgl --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd nouveau-dri --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-video-ati --noconfirm
+
+		msg "installing driver"
+		# install driver
+        if [[ "${netinst}" == "yes" ]]; then
+            /usr/bin/pacman -r ${mountpoint} -S catalyst catalyst-utils --noconfirm
+        else
+            /usr/bin/pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/catalyst-utils* --noconfirm
+            /usr/bin/pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/catalyst-1* --noconfirm
+        fi
+
+	elif [ -e "/tmp/catalyst-legacy" ] ; then
+		msg "catalyst-legacy detected"
+
+		msg "removing unneeded packages"
+		# remove conflicting packages
+		/usr/bin/pacman -r ${mountpoint} -Rdd libgl --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd nouveau-dri --noconfirm
+		/usr/bin/pacman -r ${mountpoint} -Rdd xf86-video-ati --noconfirm
+
+		msg "installing driver"
+		# install driver
+		if [[ "${netinst}" == "yes" ]]; then
+            /usr/bin/pacman -r ${mountpoint} -S catalyst-legacy catalyst-legacy-utils --noconfirm
+        else
+            /usr/bin/pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/catalyst-legacy-utils* --noconfirm
+            /usr/bin/pacman -r ${mountpoint} -Udf ${PKG_OVERLAY}/catalyst-legacy-1* --noconfirm
+        fi
+	fi
+
+	# fixing alsa
+	alsactl -f ${mountpoint}/var/lib/alsa/asound.state store
+
+	msg_job_done "job_setup_hardware"
+}

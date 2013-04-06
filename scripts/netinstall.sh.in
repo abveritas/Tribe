@@ -1,0 +1,62 @@
+#!/bin/bash
+
+newroot=$1; shift
+pkglist="$*"
+
+[[ -z $newroot || -z $pkglist ]] && exit 1
+
+echo "NETINST: start"
+
+echo "NETINST: rankmirrors"
+config_dir="@CMAKE_INSTALL_PREFIX@/share/tribe/config"
+mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.pacsave
+rankmirrors -n 3 -r core "$config_dir/mirrorlist" > /etc/pacman.d/mirrorlist
+
+pacman_args=( $pkglist )
+pacman_args+=(--noconfirm)
+pacman_args+=(--cachedir="$newroot/var/cache/pacman/pkg")
+
+api_fs_umount() {
+  echo "NETINST: unmount api fs"
+  umount \
+    "$1/tmp" \
+    "$1/run" \
+    "$1/dev/shm" \
+    "$1/dev/pts" \
+    "$1/dev" \
+    "$1/sys" \
+    "$1/proc"
+}
+
+api_fs_mount() {
+    echo "NETINST: mount api fs"
+    mount -t proc proc "$1/proc" -o nosuid,noexec,nodev &&
+    mount -t sysfs sys "$1/sys" -o nosuid,noexec,nodev &&
+    mount -t devtmpfs udev "$1/dev" -o mode=0755,nosuid &&
+    mount -t devpts devpts "$1/dev/pts" -o mode=0620,gid=5,nosuid,noexec &&
+    mount -t tmpfs shm "$1/dev/shm" -o mode=1777,nosuid,nodev &&
+    mount -t tmpfs run "$1/run" -o nosuid,nodev,mode=0755 &&
+    mount -t tmpfs tmp "$1/tmp" -o mode=1777,strictatime,nodev,nosuid
+}
+
+echo "NETINST: create dirs"
+# create necessary dirs
+mkdir -m0755 -p "$newroot"/var/{cache/pacman/pkg,lib/pacman/log} "$newroot"/{dev,run,etc}
+mkdir -m1777 -p "$newroot"/tmp
+mkdir -m0555 -p "$newroot"/{sys,proc}
+
+echo "NETINST: download packages"
+# intstall packages
+pacman -r "$newroot" -Syw "${pacman_args[@]}" || exit 3
+
+# always call umount on quit after this point
+trap 'api_fs_umount "$newroot" 2>/dev/null' EXIT
+
+# mount API filesystems
+api_fs_mount "$newroot" || exit 2
+
+echo "NETINST: install packages"
+# intstall packages
+pacman -r "$newroot" -S "${pacman_args[@]}" --needed || exit 4
+
+echo "NETINST: done"
