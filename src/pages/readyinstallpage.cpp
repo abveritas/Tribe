@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008 - 2009 by Dario Freddi                             *
- *   drf@chakra-project.org                                                *
+ *   Copyright (C) 2008 - 2009 by Dario Freddi (drf@chakra-project.org)    *
+ *                 2013 Manuel Tortosa (manutortosa@chakra-project.org)    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -44,41 +44,43 @@ void ReadyInstallPage::createWidget()
 {
     ui.setupUi(this);
 
+    QString installStr;
+    if (m_install->installationType() == InstallationHandler::NetInst) {
+        // show selected groups here too
+        installStr = i18n("Network install");
+    } else {
+        installStr = i18n("Offline install");
+    }
+    ui.installLabel->setText(installStr);
+
     if (PMHandler::instance()->operationStack().operations().isEmpty()) {
-        ui.formatLabel->hide();
+        ui.formatWidget->hide();
     }
 
+    QString formatStr;
     foreach (const Operation* op, PMHandler::instance()->operationStack().operations()) {
-        QHBoxLayout *horizontalLayout = new QHBoxLayout();
-
-        QLabel *label = new QLabel(this);
-        label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-        horizontalLayout->addWidget(label);
-
-        ui.formatLayout->addLayout(horizontalLayout);
-        label->setText(op->description());
+        formatStr += op->description() + "\n";
     }
+    ui.formatLabel->setText(formatStr);
 
+    QString mountStr;
     QHash< QString, const Partition* > mountList = PMHandler::instance()->mountList(m_install->rootDevice());
     for (QHash< QString, const Partition* >::const_iterator i = mountList.constBegin(); i != mountList.constEnd(); ++i) {
-        QHBoxLayout *horizontalLayout = new QHBoxLayout();
-
-        QLabel *label = new QLabel(this);
-        label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
-        horizontalLayout->addWidget(label);
-        ui.mountLayout->addLayout(horizontalLayout);
-
         QString partitionPath;
         if (i.value()->number() > 0) {
             partitionPath = QString("%1%2").arg(i.value()->devicePath()).arg(i.value()->number());
         } else {
             partitionPath = i18n("New partition (%1) on %2", i.value()->fileSystem().name(), i.value()->devicePath());
         }
-
-        label->setText(i18n("%1 will be used as %2", partitionPath, i.key()));
+        mountStr += i18n("%1 will be used as %2\n", partitionPath, i.key());
     }
+    ui.mountLabel->setText(mountStr);
+
+    ui.timezoneLabel->setText(i18n("'%1' will be used as timezone\n"
+                        "'%2' will be used as language and '%3' will be used as locale\n"
+                        "Keyboard settings: %4  %5  %6",
+                        m_install->timezone(), m_install->KDELangPack(), m_install->locale(),
+                        m_install->kblayout(), m_install->kbvariant()));
 }
 
 void ReadyInstallPage::aboutToGoToNext()

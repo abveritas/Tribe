@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2008, 2009  Dario Freddi <drf@chakra-project.org>
  *               2010        Drake Justice <djustice.kde@gmail.com>
+ *               2013        Manuel Tortosa (manutortosa@chakra-project.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,7 +46,6 @@ private slots:
     virtual void aboutToGoToPrevious();
 
     void setDownloadBundlesPage();
-    void setChangeAppearancePage();
     void setInitRamdiskPage();
     void setBootloaderPage();
 

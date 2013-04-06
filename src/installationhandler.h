@@ -54,6 +54,11 @@ class InstallationHandler : public QObject
             Error
         };
 
+        enum InstallationType {
+            Iso,
+            NetInst
+        };
+
         virtual ~InstallationHandler();
 
         static InstallationHandler *instance();
@@ -104,6 +109,12 @@ class InstallationHandler : public QObject
         void setRegion(const QString &region) { m_region = region; }
         QString region() { return m_region; }
 
+        void setKbLayout(const QString &kblayout) { m_kblayout = kblayout; }
+        QString kblayout() { return m_kblayout; }
+
+        void setKbVariant(const QString &kbvariant) { m_kbvariant = kbvariant; }
+        QString kbvariant() { return m_kbvariant; }
+
         void setTimezone(const QString &time) { m_timezone = time; }
         QString timezone() { return m_timezone; }
 
@@ -113,8 +124,11 @@ class InstallationHandler : public QObject
         void setKDELangPack(const QString &pack) { m_KDELangPack = pack; }
         QString KDELangPack() { return m_KDELangPack; }
 
-        void setInstallDocumentation(bool doc) { m_doc = doc; }
-        bool installDocumentation() { return m_doc; }
+        void setInstallationType(InstallationType installationType) { this->m_installationType = installationType; }
+        const InstallationType & installationType() const { return m_installationType; }
+
+        void setPackages(const QStringList & packages) { m_packages = packages; }
+        QStringList packages() const { return m_packages; }
 
         void setUserLoginList(QStringList s) { m_userLoginList = s; }
         QStringList userLoginList() { return m_userLoginList; }
@@ -146,6 +160,7 @@ class InstallationHandler : public QObject
         void postInstallDone(int, QProcess::ExitStatus);
 
         void parseUnsquashfsOutput();
+        void parsePacmanOutput();
 
         void jobDone(int);
         void reconnectJobSlot();
@@ -217,6 +232,12 @@ class InstallationHandler : public QObject
         QStringList m_userAdminList;
         QStringList m_userAutoLoginList;
 
+        QStringList m_packages;
+
+	QString m_kblayout;
+	QString m_kbvariant;
+
+        InstallationType m_installationType;
         QString m_hostname;
         QString m_continent;
         QString m_region;
@@ -225,7 +246,6 @@ class InstallationHandler : public QObject
         QString m_KDELangPack;
         QString m_rootDevice;
 
-        bool m_doc;
         bool m_configurePacman;
 
         int m_iterator;
@@ -238,3 +258,4 @@ class InstallationHandler : public QObject
 };
 
 #endif /*INSTALLATIONHANDLER_H*/
+

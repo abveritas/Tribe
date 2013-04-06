@@ -29,14 +29,14 @@ xgettext --from-code=UTF-8 -C -kde -ci18n -ki18n:1 -ki18nc:1c,2 -ki18np:1,2 -ki1
 echo "Done extracting messages"
  
  
-echo "Merging translations"
-catalogs=`find . -name '*.po'`
-for cat in $catalogs; do
-  echo $cat
-  msgmerge -o $cat.new $cat ${PROJECT}.pot
-  mv $cat.new $cat
-done
-echo "Done merging translations"
+#echo "Merging translations"
+#catalogs=`find . -name '*.po'`
+#for cat in $catalogs; do
+#  echo $cat
+#  msgmerge -o $cat.new $cat ${PROJECT}.pot
+#  mv $cat.new $cat
+#done
+#echo "Done merging translations"
  
  
 echo "Cleaning up"

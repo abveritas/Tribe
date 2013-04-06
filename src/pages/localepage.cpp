@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2008 by Lukas Appelhans                                 *
- *   l.appelhans@gmx.de                                                    *
+ *   Copyright (C) 2008 by Lukas Appelhans (l.appelhans@gmx.de)            *
+ *                 2013 Manuel Tortosa (manutortosa@chakra-project.org)    *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -33,7 +33,6 @@
 #include <marble/GeoDataPlacemark.h>
 
 #include <config-tribe.h>
-
 #include "../installationhandler.h"
 #include "localepage.h"
 
@@ -41,8 +40,8 @@
 using namespace Marble;
 
 LocalePage::LocalePage(QWidget *parent)
-        : AbstractPage(parent),
-        m_install(InstallationHandler::instance())
+    : AbstractPage(parent),
+      m_install(InstallationHandler::instance())
 {
 }
 
@@ -61,19 +60,26 @@ void LocalePage::createWidget()
     zoomInButton->setIcon(KIcon("zoom-in"));
     zoomOutButton->setIcon(KIcon("zoom-out"));
 
+    // this looks interesting.. finish it. ;)
+    locationsSearch->hide();
+    locationsView->hide();
+
     // setup marble widget
-    marble->setShowAtmosphere(true);
+    marble->hide();
     marble->installEventFilter(this);
+    marble->model()->addGeoDataFile(QString(DATA_INSTALL_DIR) + "/marble/data/placemarks/cities.kml");
+    marble->setMapThemeId("earth/bluemarble/bluemarble.dgml");
+    marble->setShowAtmosphere(true);
     marble->setCenterLatitude(35.0);
     marble->setCenterLongitude(-28.0);
-    marble->setMapThemeId("earth/citylights/citylights.dgml");
     marble->setShowCities(false);
+    marble->setShowTerrain(false);
+    marble->setShowBorders(true);
     marble->setShowOverviewMap(false);
     marble->setShowScaleBar(false);
     marble->setShowCompass(false);
     marble->setShowCrosshairs(false);
     marble->setShowGrid(false);
-    marble->model()->addGeoDataFile(QString(DATA_INSTALL_DIR) + "/marble/data/placemarks/cities.kml");
 
     // parse timezone data
     QFile f(QString(CONFIG_INSTALL_PATH) + "/timezones");
@@ -82,12 +88,12 @@ void LocalePage::createWidget()
         qDebug() << f.errorString();
 
     QTextStream stream(&f);
-	locales.clear();
+    locales.clear();
 
     while (!stream.atEnd()) {
         QString line(stream.readLine());
         QStringList split = line.split(':');
-		locales.append(split);
+        locales.append(split);
     }
 
     f.close();
@@ -107,16 +113,16 @@ void LocalePage::createWidget()
     f.close();
 
     // sort items in locales
-	QStringList keys;
+    QStringList keys;
 
     foreach (const QStringList &l, locales) {
-		keys << l.first();
+        keys << l.first();
     }
 
     keys.sort();
 
     // populate combo boxes
-	foreach(const QString &string, keys) {
+    foreach (const QString &string, keys) {
         QStringList split = string.split("/");
 
         if (m_allTimezones.contains(split.first())) {
@@ -127,30 +133,27 @@ void LocalePage::createWidget()
         }
     }
 
-    // this looks interesting.. finish it. ;)
-    locationsSearch->hide();
-    locationsView->hide();
-
     // trigger changed for new combo box data
     continentChanged();
 
-    connect(zoomInButton, SIGNAL(clicked()), marble, SLOT(zoomIn()));
+    connect(zoomInButton,  SIGNAL(clicked()), marble, SLOT(zoomIn()));
     connect(zoomOutButton, SIGNAL(clicked()), marble, SLOT(zoomOut()));
+
     connect(zoomSlider, SIGNAL(valueChanged(int)), SLOT(zoom(int)));
 
     connect(marble, SIGNAL(zoomChanged(int)), this, SLOT(zoomChanged(int)));
 
-    connect(continentCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(continentChanged()));
-    connect(regionCombo, SIGNAL(currentIndexChanged(int)), SLOT(regionChanged()));
+    connect(continentCombo, SIGNAL(currentIndexChanged(int)), SLOT(continentChanged()));
+    connect(regionCombo,    SIGNAL(currentIndexChanged(int)), SLOT(regionChanged()));
 
-    connect(showLocalesCheck, SIGNAL(stateChanged(int)), SLOT(updateLocales()));
-    connect(showKDELangsCheck, SIGNAL(stateChanged(int)), SLOT(updateLocales()));
+    connect(showLocalesCheck,  SIGNAL(stateChanged(int)), SLOT(updateLocales(int)));
+    connect(showKDELangsCheck, SIGNAL(stateChanged(int)), SLOT(updateKDELangs(int)));
 
     //If the user has previously selected a continent, region, language or locale, select those for the user again
     if (!m_install->continent().isEmpty()) {
         int index = continentCombo->findText(m_install->continent(), Qt::MatchFixedString);
 
-        if(index >= 0) {
+        if (index >= 0) {
             continentCombo->setCurrentIndex(index);
         }
     }
@@ -158,7 +161,7 @@ void LocalePage::createWidget()
     if (!m_install->region().isEmpty()) {
         int index = regionCombo->findText(m_install->region(), Qt::MatchFixedString);
 
-        if(index >= 0) {
+        if (index >= 0) {
             regionCombo->setCurrentIndex(index);
         }
     }
@@ -166,7 +169,7 @@ void LocalePage::createWidget()
     if (!m_install->KDELangPack().isEmpty()) {
         int index = kdeLanguageCombo->findText(m_allKDELangs.value(m_install->KDELangPack()), Qt::MatchFixedString);
 
-        if(index >= 0) {
+        if (index >= 0) {
             kdeLanguageCombo->setCurrentIndex(index);
         }
     }
@@ -174,12 +177,14 @@ void LocalePage::createWidget()
     if (!m_install->locale().isEmpty()) {
         int index = localeCombo->findText(m_install->locale(), Qt::MatchFixedString);
 
-        if(index >= 0) {
+        if (index >= 0) {
             localeCombo->setCurrentIndex(index);
         }
     }
 
     zoom(55);
+
+    marble->show();
 }
 
 void LocalePage::zoom(int value)
@@ -187,14 +192,14 @@ void LocalePage::zoom(int value)
     marble->zoomView(value * 20);
 }
 
-bool LocalePage::eventFilter(QObject * object, QEvent * event)
+bool LocalePage::eventFilter(QObject *object, QEvent *event)
 {
     /// there is some way to stop the long/lat popup menu from here..
 
     // if mouse was pressed on the marble widget
     if (object == marble && event->type() == QEvent::MouseButtonPress) {
         // if an actual place was clicked
-        QVector<const GeoDataPlacemark*> indexes = marble->whichFeatureAt(marble->mapFromGlobal(QCursor::pos()));
+        QVector<const GeoDataPlacemark *> indexes = marble->whichFeatureAt(marble->mapFromGlobal(QCursor::pos()));
         if (!indexes.isEmpty()) {
             // check the place against the data, and set the combo box accordingly
             QHash<QString, QStringList>::const_iterator it;
@@ -233,38 +238,13 @@ void LocalePage::regionChanged()
         kdeLanguageCombo->clear();
     }
 
-    if (!showLocalesCheck->isChecked() || !showKDELangsCheck->isChecked()) {
-        QString time = continentCombo->currentText() + "/" + regionCombo->currentText().replace(' ', '_');
-
-        //Find the locales that exist for the currently selected continent and region
-        QList<QStringList>::const_iterator it;
-        for (it = locales.constBegin(); it != locales.constEnd(); ++it) {
-            if ((*it).first() == time) {
-                if (!showLocalesCheck->isChecked()) {
-                    localeCombo->clear();
-
-                    //Populate the locale combobox
-                    foreach(const QString &str, (*it).at(1).split(',')) {
-                        localeCombo->addItem(str);
-                    }
-                }
-
-                if (!showKDELangsCheck->isChecked()) {
-                    kdeLanguageCombo->clear();
-
-                    //Populate the language combobox
-                    foreach(const QString &str, (*it).at(2).split(',')) {
-                        kdeLanguageCombo->addItem(m_allKDELangs.value(str));
-                    }
-                }
-            }
-        }
-    }
+    updateKDELangs(showKDELangsCheck->checkState());
+    updateLocales(showLocalesCheck->checkState());
 }
 
-void LocalePage::updateLocales()
+void LocalePage::updateLocales(int state)
 {
-    if (showLocalesCheck->isChecked()) {
+    if (state == Qt::Checked) {
         if (m_allLocales.isEmpty()) {
             QFile fp(QString(CONFIG_INSTALL_PATH) + "/all_locales");
 
@@ -291,9 +271,27 @@ void LocalePage::updateLocales()
         if (localeCombo->findText(current) != -1) {
             localeCombo->setCurrentIndex(localeCombo->findText(current));
         }
-    }
+    } else {
+        // state == Qt::Unchecked
+        QString time = continentCombo->currentText() + "/" + regionCombo->currentText().replace(' ', '_');
+        //Find the locales that exist for the currently selected continent and region
+        QList<QStringList>::const_iterator it;
+        for (it = locales.constBegin(); it != locales.constEnd(); ++it) {
+            if ((*it).first() == time) {
+                localeCombo->clear();
 
-    if (showKDELangsCheck->isChecked()) {
+                //Populate the locale combobox
+                foreach (const QString &str, (*it).at(1).split(',')) {
+                    localeCombo->addItem(str);
+                }
+            }
+        }
+    }
+}
+
+void LocalePage::updateKDELangs(int state)
+{
+    if (state == Qt::Checked) {
         QString current = kdeLanguageCombo->currentText();
         QStringList values = m_allKDELangs.values();
         values.sort();
@@ -307,10 +305,21 @@ void LocalePage::updateLocales()
         if (kdeLanguageCombo->findText(current) != -1) {
             kdeLanguageCombo->setCurrentIndex(kdeLanguageCombo->findText(current));
         }
-    }
+    } else {
+        // state == Qt::Unchecked
+        QString time = continentCombo->currentText() + "/" + regionCombo->currentText().replace(' ', '_');
+        //Find the locales that exist for the currently selected continent and region
+        QList<QStringList>::const_iterator it;
+        for (it = locales.constBegin(); it != locales.constEnd(); ++it) {
+            if ((*it).first() == time) {
+                kdeLanguageCombo->clear();
 
-    if (!showKDELangsCheck->isChecked() || !showLocalesCheck->isChecked()) {
-        regionChanged();
+                //Populate the language combobox
+                foreach (const QString &str, (*it).at(2).split(',')) {
+                    kdeLanguageCombo->addItem(m_allKDELangs.value(str));
+                }
+            }
+        }
     }
 }
 
@@ -330,8 +339,8 @@ bool LocalePage::validate()
         dialog->setModal(true);
 
         KMessageBox::createKMessageBox(dialog, QMessageBox::Warning,
-                                        i18n("You need to select a timezone"),
-                                        QStringList(), QString(), &retbool, KMessageBox::Notify);
+                                       i18n("You need to select a timezone"),
+                                       QStringList(), QString(), &retbool, KMessageBox::Notify);
         return false;
     }
 

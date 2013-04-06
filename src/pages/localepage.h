@@ -48,7 +48,8 @@ private slots:
 
     void continentChanged();
     void regionChanged();
-    void updateLocales();
+    void updateLocales(int);
+    void updateKDELangs(int);
 
     bool validate();
 

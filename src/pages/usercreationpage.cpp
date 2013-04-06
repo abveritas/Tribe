@@ -2,6 +2,7 @@
  * Copyright (c) 2008, 2009  Dario Freddi <drf@chakra-project.org>
  *               2009        Lukas Appelhans <l.appelhans@gmx.de>
  *               2010        Drake Justice <djustice.kde@gmail.com>
+ *               2013        Manuel Tortosa <manutorotsa@chalra-project.org>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +19,7 @@
 #include <KMessageBox>
 #include <KIO/Job>
 #include <KIO/NetAccess>
+#include <KDialog>
 
 #include <config-tribe.h>
 
@@ -160,31 +162,44 @@ bool UserCreationPage::validate()
                 KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("You must give at least one login name."),
                                                QStringList(), QString(), &retbool, KMessageBox::Notify);
                 return false;
+            } else if (user->useRootPw && user->rootPasswordsEmpty) {
+                KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Root Passwords cannot be empty."),
+                                               QStringList(), QString(), &retbool, KMessageBox::Notify);
+                return false;
             } else if (!user->rootPasswordsMatch) {
                 KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Root Passwords do not match..."),
                                                QStringList(), QString(), &retbool, KMessageBox::Notify);
                 return false;
             }
 
-            if (!user->rootPassword.isEmpty() && user->rootPasswordsMatch &&
-                user->useRootPw) {
+            if (user->useRootPw) {
                 rootPw = user->rootPassword;
-            } else if (!user->useRootPw) {
-		qDebug() << "ing user password for root";
+            } else {
+                qDebug() << "using user password for root";
                 rootPw = user->password;
             }
         }
 
-        if ((user->password.isEmpty()) && (user->passwordsMatch == true)) {
+        if (user->login.isEmpty()) {
+            KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Login names cannot be empty."),
+                                           QStringList(), QString(), &retbool, KMessageBox::Notify);
+            return false;
+	} else if (!user->isUserNameValid()) {
+            KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Please check your username.."),
+                                           QStringList(), QString(), &retbool, KMessageBox::Notify);
+	  user->loginLine->setFocus();
+	  return false;
+	} else if (loginList.contains(user->login)) {
+            KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Login names must be unique."),
+                                           QStringList(), QString(), &retbool, KMessageBox::Notify);
+	  user->loginLine->setFocus();
+	  return false;
+	} else if (user->passwordsEmpty) {
             KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Passwords cannot be empty."),
                                            QStringList(), QString(), &retbool, KMessageBox::Notify);
             return false;
         } else if (!user->passwordsMatch) {
             KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Passwords do not match..."),
-                                           QStringList(), QString(), &retbool, KMessageBox::Notify);
-            return false;
-        } else if (user->login.isEmpty()) {
-            KMessageBox::createKMessageBox(dialog, QMessageBox::Warning, i18n("Login names cannot be empty."),
                                            QStringList(), QString(), &retbool, KMessageBox::Notify);
             return false;
         }
@@ -222,14 +237,13 @@ void UserCreationPage::aboutToGoToNext()
 
 void UserCreationPage::aboutToGoToPrevious()
 {
-    if (validate())
-        emit goToPreviousStep();
+    emit goToPreviousStep();
 }
 
 void UserCreationPage::validateNext()
 {
     bool enable = true;
-
+    
     emit enableNextButton(enable);
 }
 

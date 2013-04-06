@@ -1,531 +1,630 @@
-# Translation of Tribe.po to hungarian
-# Copyright (C) 2010 This file is part of Chakra-project
-# This file is distributed under the same license as the Tribe package.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+#   <evenorbert@gmail.com>, 2013.
 # Laszlo Papp <djszapi@archlinux.us>, 2010.
-# Manuel Tortosa <manutortosa@gmail.com>, 2010.
+# Manuel Tortosa <manutortosa@gmail.com>, 2010,2012.
+# Norbert Evenich <evenorbert@gmail.com>, 2013.
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: bugs@chakra-project.org\n"
-"POT-Creation-Date: 2011-08-30 20:57+0200\n"
-"PO-Revision-Date: 2010-01-19 01:11+0100\n"
-"Last-Translator: Manuel Tortosa <manutortosa@gmail.com>\n"
-"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
-"Language: ca\n"
+"Project-Id-Version: The Chakra Project\n"
+"Report-Msgid-Bugs-To: http://chakra-project.org/bugs/\n"
+"POT-Creation-Date: 2013-03-05 00:11+0100\n"
+"PO-Revision-Date: 2013-03-04 23:12+0000\n"
+"Last-Translator: Manuel Tortosa <manutortosa@chakra-project.org>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/chakra-project/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.0\n"
-"X-Language: hu_HU\n"
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/installationhandler.cpp:87
+#: src/installationhandler.cpp:86
 msgid "Tribe was not able to initialize needed path: "
-msgstr ""
+msgstr "A Tribe nem tudta előkészíteni a szükséges útvonalat:"
 
-#: src/installationhandler.cpp:87
+#: src/installationhandler.cpp:86
 msgid " , please resolve the issue, and try again."
-msgstr ""
+msgstr " ,kérjük oldja meg a problémát és próbálkozzon újra."
 
-#: src/installationhandler.cpp:149
+#: src/installationhandler.cpp:183
+msgid "Mounting partitions..."
+msgstr "A particiók felcsatolása..."
+
+#: src/installationhandler.cpp:191
+msgid "Preparing installation..."
+msgstr "A telepítés előkészítése..."
+
+#: src/installationhandler.cpp:206
 msgid "Installing the system ..."
 msgstr "A rendszer telepítése ..."
 
-#: src/installationhandler.cpp:177
-#, fuzzy
-msgid "Mounting partitions..."
-msgstr "%1 %2-re történő felcsatolása..."
-
-#: src/installationhandler.cpp:185
-#, fuzzy
-msgid "Preparing installation..."
-msgstr "Telepítés befejezése..."
-
-#: src/installationhandler.cpp:212
+#: src/installationhandler.cpp:234
 msgid "Error copying files"
 msgstr "Hiba történt a fájlok másolása közben"
 
-#: src/installationhandler.cpp:215
+#: src/installationhandler.cpp:237
 msgid "Removing packages whose license has been declined ..."
-msgstr "Csomagok eltávolítása, melyek licensze el lett utasítva ..."
+msgstr "Csomagok eltávolítása, melyek licence el lett utasítva ..."
 
-#: src/installationhandler.cpp:253
-msgid "Initializing target ..."
-msgstr "A cél inicializálása ..."
-
-#: src/installationhandler.cpp:344
-#, fuzzy
-msgid "Please wait, configuring the new system ..."
-msgstr "Kérem várjon, PostInstall konfigurálása és elindítása történik ..."
-
-#: src/installationhandler.cpp:423
-msgid "Error in Postinstall script. See log for more details"
+#: src/installationhandler.cpp:276
+msgid "Starting Netinstall..."
 msgstr ""
-"Hiba a PostInstall szkripben. Tekintse meg a logot továbbiinformációkért"
 
-#: src/installationhandler.cpp:432
-#, fuzzy
+#: src/installationhandler.cpp:278
+msgid "Installing Packages..."
+msgstr "Csomagok telepítése..."
+
+#: src/installationhandler.cpp:286
+msgid "Downloading Packages..."
+msgstr "Csomagok letöltése..."
+
+#: src/installationhandler.cpp:330
+msgid "Initializing target ..."
+msgstr "A cél előkészítése ..."
+
+#: src/installationhandler.cpp:429
+msgid "Please wait, configuring the new system ..."
+msgstr "Kérjük várjon, amíg az új rendszert beállítjuk..."
+
+#: src/installationhandler.cpp:507
+msgid "Error in Postinstall script. See log for more details"
+msgstr "Hiba a PostInstall szkriptben. Tekintse meg a logot a további információkért"
+
+#: src/installationhandler.cpp:516
 msgid "Creating user accounts ..."
-msgstr "Konfigurációk létrehozása ..."
+msgstr "Felhasználói fiókok létrehozása..."
 
-#: src/installationhandler.cpp:435
-#, fuzzy
+#: src/installationhandler.cpp:519
 msgid "Configuring software management..."
-msgstr "Hardver konfigurálása..."
+msgstr "Szoftverforrások beállítása..."
 
-#: src/installationhandler.cpp:439
-#, fuzzy
+#: src/installationhandler.cpp:523
 msgid "Removing unused packages..."
-msgstr "Felesleges csomagok eltávolítása..."
+msgstr "Nem használt csomagok eltávolítása..."
 
-#: src/installationhandler.cpp:443
+#: src/installationhandler.cpp:527
 msgid "Installing additional packages..."
 msgstr "További csomagok telepítése..."
 
-#: src/installationhandler.cpp:447
-#, fuzzy
+#: src/installationhandler.cpp:531
 msgid "Configuring the display..."
-msgstr "Hardver konfigurálása..."
+msgstr "Képernyő beállítása..."
 
-#: src/installationhandler.cpp:451
-#, fuzzy
+#: src/installationhandler.cpp:535
 msgid "Downloading and installing localization packages..."
-msgstr ""
-"Lokalizációs csomagok letöltése és telepítése történik, ez eltarthat "
-"egydarabig..."
+msgstr "Nyelvi fájlok letöltése és telepítése..."
 
-#: src/installationhandler.cpp:455
-#, fuzzy
-msgid "Downloading and installing documentation packages..."
-msgstr "Dokumentációs csomagok letöltése és telepítése"
-
-#: src/installationhandler.cpp:459
-msgid "Setting up localization..."
-msgstr "Lokalizáció beállítása..."
-
-#: src/installationhandler.cpp:463
-msgid "Creating daemon configuration..."
-msgstr "Daemon konfiguráció létrehozása..."
-
-#: src/installationhandler.cpp:467
-msgid "Creating network configuration..."
-msgstr "Hálózati konfiguráció létrehozása..."
-
-#: src/installationhandler.cpp:471
+#: src/installationhandler.cpp:539
 msgid "Creating fstab..."
 msgstr "Fstab létrehozása..."
 
-#: src/installationhandler.cpp:478
+#: src/installationhandler.cpp:543
+msgid "Adding extra mountpoints..."
+msgstr "Extra csatolási pontok hozzáadása..."
+
+#: src/installationhandler.cpp:547
 msgid "Configuring hardware..."
-msgstr "Hardver konfigurálása..."
+msgstr "Hardver beállítása..."
 
-#: src/installationhandler.cpp:482
-#, fuzzy
+#: src/installationhandler.cpp:551
 msgid "Creating initial ramdisk images..."
-msgstr ""
-"Kezdeti ramlemez kép létrehozása. Ez sokáig is eltarthat, maradjonitt..."
+msgstr "Ramdisk képfájlok létrehozása..."
 
-#: src/installationhandler.cpp:486
-#, fuzzy
+#: src/installationhandler.cpp:555
 msgid "Generating locales..."
-msgstr "Lokális dolgok regenerálása..."
+msgstr "Helyhez kötődő beállítások generálása..."
 
-#: src/installationhandler.cpp:490
-#, fuzzy
+#: src/installationhandler.cpp:559
 msgid "Removing unused localizations..."
-msgstr "Felesleges lokalizációk eltávolítása..."
+msgstr "Nem használt nyelvi fájlok eltávolítása..."
 
-#: src/installationhandler.cpp:494
-#, fuzzy
+#: src/installationhandler.cpp:563
+msgid "Symlinking localtime..."
+msgstr "Helyi idő szinkronizálása..."
+
+#: src/installationhandler.cpp:567
+msgid "Setting keymap..."
+msgstr "Billentyűzetkiosztás beállítása..."
+
+#: src/installationhandler.cpp:571
+msgid "Setting hostname..."
+msgstr "Számítógép nevének beállítása..."
+
+#: src/installationhandler.cpp:575
 msgid "Removing unused drivers..."
-msgstr "Felesleges vezérlők eltávolítása..."
+msgstr "Nem használt meghajtóprogramok eltávolítása..."
 
-#: src/installationhandler.cpp:498
-#, fuzzy
+#: src/installationhandler.cpp:579
 msgid "Finishing up..."
-msgstr "Telepítés befejezése..."
+msgstr "Befejezés..."
 
-#: src/installationhandler.cpp:502
+#: src/installationhandler.cpp:583
 msgid "Installation complete!"
-msgstr "Telepítés megtörtént!"
+msgstr "A telepítés befejeződött!"
 
-#: src/installationhandler.cpp:593
-#, fuzzy
+#: src/installationhandler.cpp:674
 msgid ""
 "Tribe was not able to initialize needed directories. Something is very "
 "wrong..."
-msgstr ""
-"A Tribe nem tudta inicializálni a szükséges könyvtárakat. Valószínűleg  "
-"nincsen meg a megfelelő joga hozzá, kérem indítsa újra a Tribe-t  "
-"rendszergazdajént."
+msgstr "A Tribe nem volt képes előkészíteni a szükséges könyvtárakat. Valami nem jól sikerült..."
 
-#: src/installationhandler.cpp:617
+#: src/installationhandler.cpp:698
 msgid "Could not mount %1"
 msgstr "%1 csatolása nem sikerült"
 
-#: src/installationhandler.h:171
+#: src/installationhandler.h:186
 msgid "No Further details given"
 msgstr "Nincsenek további részletek"
 
 #. i18n: file: ui/pages/base.ui:20
 #. i18n: ectx: property (windowTitle), widget (QWidget, Base)
-#: src/main.cpp:41 rc.cpp:3
+#: src/main.cpp:44 rc.cpp:3
 msgid "Tribe"
 msgstr "Tribe"
 
-#: src/main.cpp:42
-#, fuzzy
+#: src/main.cpp:45
 msgid "Graphical Installer for Chakra"
-msgstr "Chakra LiveCD telepítő"
+msgstr "A Chakra grafikus telepítője"
 
-#: src/main.cpp:43
-#, fuzzy
-msgid "(c) 2008 - 2011 the Chakra Development Team"
-msgstr "(c) 2008 Chakra Fejlesztői Csoport"
+#: src/main.cpp:46
+msgid "(c) 2008 - 2013 the Chakra Development Team"
+msgstr "(c) 2008 - 2013 the Chakra Development Team"
 
-#: src/main.cpp:43
+#: src/main.cpp:46
 msgid "chakra@chakra-project.org"
-msgstr "chakra@chakraüproject.org"
+msgstr "chakra@chakra-project.org"
 
-#: src/main.cpp:45
-msgid "Dario Freddi"
-msgstr "Dario Freddi"
+#: src/main.cpp:47
+msgid "Manuel Tortosa"
+msgstr "Manuel Tortosa"
 
-#: src/main.cpp:45
+#: src/main.cpp:47
 msgid "Maintainer"
 msgstr "Karbantartó"
 
-#: src/main.cpp:46
-msgid "Lukas Appelhans"
-msgstr "Lukas Appelhans"
+#: src/main.cpp:48
+msgid "Dario Freddi"
+msgstr "Dario Freddi"
 
-#: src/main.cpp:46 src/main.cpp:50 src/main.cpp:51 src/main.cpp:52
+#: src/main.cpp:48 src/main.cpp:49 src/main.cpp:52 src/main.cpp:53
+#: src/main.cpp:54
 msgid "Developer"
 msgstr "Fejlesztő"
 
-#: src/main.cpp:47
+#: src/main.cpp:49
+msgid "Lukas Appelhans"
+msgstr "Lukas Appelhans"
+
+#: src/main.cpp:50
 msgid "Jan Mette"
 msgstr "Jan Mette"
 
-#: src/main.cpp:47
+#: src/main.cpp:50
 msgid "PostInstall Backend and Artwork"
 msgstr "PostInstall backend és műalkotás"
 
-#: src/main.cpp:48
+#: src/main.cpp:51
 msgid "Phil Miller"
-msgstr ""
-
-#: src/main.cpp:48 src/main.cpp:49
-#, fuzzy
-msgid "PostInstall Backend"
-msgstr "PostInstall backend és műalkotás"
-
-#: src/main.cpp:49
-msgid "Manuel Tortosa"
-msgstr ""
-
-#: src/main.cpp:50
-msgid "Drake Justice"
-msgstr ""
+msgstr "Phil Miller"
 
 #: src/main.cpp:51
-msgid "Georg Grabler"
-msgstr ""
+msgid "PostInstall Backend"
+msgstr "PostInstall Backend"
 
 #: src/main.cpp:52
-msgid "Daniele Cocca"
-msgstr ""
+msgid "Drake Justice"
+msgstr "Drake Justice"
 
-#: src/mainwindow.cpp:99
+#: src/main.cpp:53
+msgid "Georg Grabler"
+msgstr "Georg Grabler"
+
+#: src/main.cpp:54
+msgid "Daniele Cocca"
+msgstr "Daniele Cocca"
+
+#: src/main.cpp:83
+msgid ""
+"Your system does not meet the minimal memory needed\n"
+"for installing Chakra with Tribe (1gb), total available memory: %1 mbytes\n"
+"\n"
+"Continue at your own risk"
+msgstr "Az ön rendszere nem rendelkezik megfelelő mennyiségű memóriával\na Chakra telepítéséhez 1gb szükséges, rendelkezésre álló memória:: %1 mbytes\n\nKérjük csak a saját felelősségére folytassa a telepítést"
+
+#: src/main.cpp:105
+msgid ""
+"It looks like your power adaptor is unplugged. Installation is a delicate "
+"and lenghty process, hence it is strongly advised to have your PC connected "
+"to AC to minimize possible risks."
+msgstr "Úgy tűnik a hálózati adaptere nincsen bedugva. A telepítés egy részletes és hosszú folyamat, ezért azt ajánljuk, hogy csatlakoztassa számítógépét a hálózatba, a kockázat minimalizálása érdekében."
+
+#: src/mainwindow.cpp:98
 msgid "Do you really want to abort the installation?"
 msgstr "Biztosan meg szeretné szakítani a telepítést?"
 
-#: src/mainwindow.cpp:509
+#: src/mainwindow.cpp:557
 msgid ""
 "Installation failed! The following error has been reported: %1.\n"
 "Tribe will now quit, please check the installation logs in /tmp\n"
 "or ask for help in our forums."
-msgstr ""
-"Nem sikerült a telepítés! A következőt hibát kellene riportolni: %1.\n"
-"Tribe most ki fog lépni, kérem ellenőrizze le a telepítése logokat a /"
-"tmpkönyvtárban\n"
-"vagy kérjen segítséget a fórumon."
+msgstr "Nem sikerült a telepítés! A következőt hiba történt: %1.\nA Tribe  most ki fog lépni, kérem ellenőrizze le a telepítése logokat a /tmp könyvtárban\nvagy kérjen segítséget a fórumon."
 
-#: src/pages/bootloaderpage.cpp:52 src/pages/configpage.cpp:539
+#: src/pages/bootloaderpage.cpp:52 src/pages/configpage.cpp:536
 msgid "Installing bootloader..."
-msgstr "Betöltő telepítése..."
+msgstr "A rendszerbetöltő telepítése..."
 
 #: src/pages/bootloaderpage.cpp:82
-#, fuzzy
 msgid "Creating OS list..."
-msgstr "Fstab létrehozása..."
+msgstr "Operációs rendszerek listájának elkészítése..."
 
-#: src/pages/configpage.cpp:153 src/pages/configpage.cpp:363
-#, fuzzy
+#: src/pages/configpage.cpp:155 src/pages/configpage.cpp:365
 msgid "Downloading"
-msgstr "Letöltési beállítások"
+msgstr "A letöltés folyamatban"
 
-#: src/pages/configpage.cpp:263
+#: src/pages/configpage.cpp:265
 msgid ""
 "Sorry, you have no internet connection at the moment \n"
 "Will stop bundle(s) installation now"
-msgstr ""
-
-#: src/pages/configpage.cpp:349
-#, fuzzy
-msgid "loading package data..."
-msgstr "Felesleges csomagok eltávolítása..."
-
-#: src/pages/configpage.cpp:350
-#, fuzzy
-msgid "Loading package data..."
-msgstr "Felesleges csomagok eltávolítása..."
+msgstr "Sajnáljuk, jelenleg önnek nincsen működő internet kapcsolata\nMegszakítjuk a bundle telepítését"
 
 #: src/pages/configpage.cpp:351
-msgid "checking dependencies..."
-msgstr ""
+msgid "loading package data..."
+msgstr "csomaginformációk betöltése..."
 
 #: src/pages/configpage.cpp:352
-msgid "Checking dependencies..."
-msgstr ""
+msgid "Loading package data..."
+msgstr "Csomaginformációk betöltése..."
 
 #: src/pages/configpage.cpp:353
-msgid "resolving dependencies..."
-msgstr ""
+msgid "checking dependencies..."
+msgstr "függőségek ellenőrzése..."
 
 #: src/pages/configpage.cpp:354
-#, fuzzy
-msgid "Resolving dependencies..."
-msgstr "Felesleges vezérlők eltávolítása..."
+msgid "Checking dependencies..."
+msgstr "Függőségek ellenőrzése..."
 
 #: src/pages/configpage.cpp:355
-msgid "checking package integrity..."
-msgstr ""
+msgid "resolving dependencies..."
+msgstr "függőségek feloldása..."
 
 #: src/pages/configpage.cpp:356
-msgid "Checking package integrity..."
-msgstr ""
+msgid "Resolving dependencies..."
+msgstr "Függőségek feloldása..."
 
 #: src/pages/configpage.cpp:357
+msgid "checking package integrity..."
+msgstr "csomagintegritás ellenőrzése..."
+
+#: src/pages/configpage.cpp:358
+msgid "Checking package integrity..."
+msgstr "Csomagintegritás ellenőrzése..."
+
+#: src/pages/configpage.cpp:359
 msgid "Total Download Size:"
-msgstr ""
+msgstr "A letöltés teljes mérete:"
 
 #. i18n: file: ui/pages/config.ui:928
 #. i18n: ectx: property (text), widget (QPushButton, downloadBundlesButton)
-#: src/pages/configpage.cpp:417 rc.cpp:166
+#: src/pages/configpage.cpp:419 rc.cpp:172
 msgid "Download Popular Bundles"
-msgstr ""
+msgstr "Népszerű bundle letöltése"
 
 #. i18n: file: ui/pages/config.ui:906
 #. i18n: ectx: property (text), widget (QPushButton, bootloaderSettingsButton)
-#: src/pages/configpage.cpp:435 rc.cpp:163
-#, fuzzy
+#: src/pages/configpage.cpp:432 rc.cpp:169
 msgid "Bootloader Settings"
-msgstr "Betöltő"
+msgstr "A rendszerbetöltő beállításai"
 
 #. i18n: file: ui/pages/config.ui:867
 #. i18n: ectx: property (text), widget (QPushButton, initRamDiskButton)
-#: src/pages/configpage.cpp:448 rc.cpp:157
+#: src/pages/configpage.cpp:445 rc.cpp:163
 msgid "Customize Initial Ramdisk"
-msgstr ""
+msgstr "Ramdisk egyedivé tétele"
 
-#: src/pages/configpage.cpp:511
+#: src/pages/configpage.cpp:508
 msgid ""
 "Bootloader-Setup finished with Exitcode: %1\n"
-"Something went wrong. Before reboot it is recommended \n"
+"Some might went wrong. Before reboot it is recommended \n"
 "to check %2/boot/grub/grub.cfg. \n"
-msgstr ""
+msgstr "A rendszerbetöltő telepítése ezzel a hibával megszakadt: %1\nHiba történt. Újraindítás előtt ajánlott megnézni \na %2/boot/grub/grub.cfg fájlt.\n"
 
 #: src/pages/licensepage.cpp:53
 msgid "Proprietary ATI Driver"
-msgstr "Megfelelő ATI meghajtó"
+msgstr "Zárt ATI meghajtó"
 
 #: src/pages/licensepage.cpp:57
 msgid "Proprietary NVidia Driver"
-msgstr "Megfelelő NVidia meghajtó"
+msgstr "Zárt NVidia meghajtó"
 
-#: src/pages/licensepage.cpp:117
+#: src/pages/licensepage.cpp:119
 msgid "Accept license for: "
-msgstr "Következő licensz elfogadása: "
+msgstr "Következő licenc elfogadása: "
 
-#: src/pages/localepage.cpp:309
-#, fuzzy
+#: src/pages/localepage.cpp:342
 msgid "You need to select a timezone"
-msgstr "Időzóna kiválasztása szükséges."
+msgstr "Be kell állítania egy időzónát"
 
-#: src/pages/partitionpage.cpp:89
+#: src/pages/netinstpage.cpp:22
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: src/pages/netinstpage.cpp:22
+msgid "Default group"
+msgstr "Alapértelmezett csoport"
+
+#: src/pages/netinstpage.cpp:23
+msgid "Wireless"
+msgstr "Vezeték nélküli"
+
+#: src/pages/netinstpage.cpp:23
+msgid "Tools for wireless connections"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:24
+msgid "CCR"
+msgstr "CCR"
+
+#: src/pages/netinstpage.cpp:24
+msgid "Tools for the Chakra Community Repository"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:25
+msgid "Graphics"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:25
+msgid "Applications to work with graphics"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:26
+msgid "Burning"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:26
+msgid "Set of packages for disc burning"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:27
+msgid "Printing"
+msgstr "Nyomtatás"
+
+#: src/pages/netinstpage.cpp:27
+msgid "Print much?"
+msgstr "Sokat nyomtat?"
+
+#: src/pages/netinstpage.cpp:28
+msgid "Multimedia"
+msgstr "Multimédia"
+
+#: src/pages/netinstpage.cpp:28
+msgid "Music and video players"
+msgstr "Zene- és videólejátszók"
+
+#: src/pages/netinstpage.cpp:29
+msgid "Gtk Integration"
+msgstr "Gtk integráció"
+
+#: src/pages/netinstpage.cpp:29
+msgid "Integrate Gtk applications with plasma"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:30
+msgid "Miscelaneous"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:30
+msgid "Useful tools and apps"
+msgstr ""
+
+#: src/pages/netinstpage.cpp:40
+msgid ""
+"Network Installation. (Disabled: Unable to fetch package lists, check your "
+"network connection)"
+msgstr ""
+
+#: src/pages/partitionpage.cpp:91
 msgid "Please enter a custom mountpoint"
-msgstr ""
+msgstr "Kérjük adjon meg egy csatolási pontot"
 
-#: src/pages/partitionpage.cpp:101
+#: src/pages/partitionpage.cpp:103
 msgid "The mount point must start with /"
-msgstr ""
+msgstr "A csatolási pontnak / -vel kell kezdődnie"
 
-#: src/pages/partitionpage.cpp:102
+#: src/pages/partitionpage.cpp:104
 msgid "Error"
 msgstr "Hiba"
 
-#: src/pages/partitionpage.cpp:196
+#: src/pages/partitionpage.cpp:198
 msgid "New"
-msgstr ""
+msgstr "Új"
 
-#: src/pages/partitionpage.cpp:196
+#: src/pages/partitionpage.cpp:198
 msgid "Unsupported"
-msgstr ""
+msgstr "Nem támogatott"
 
-#: src/pages/partitionpage.cpp:416
+#: src/pages/partitionpage.cpp:426
 msgid "Loading partitions..."
-msgstr ""
+msgstr "Particiók betöltése..."
 
-#: src/pages/partitionpage.cpp:664
+#: src/pages/partitionpage.cpp:675
 msgid "Extended"
-msgstr ""
-
-#: src/pages/partitionpage.cpp:809
-msgid ""
-"Tribe detected target partitions which are mounted. Do you want Tribe to "
-"unmount them?"
-msgstr ""
+msgstr "Kiterjesztett"
 
 #: src/pages/partitionpage.cpp:825
 msgid ""
+"Tribe detected target partitions which are mounted. Do you want Tribe to "
+"unmount them?"
+msgstr "A Tribe érzékelte, hogy a célparticiók csatolva vannak. Kívánja, hogy a Tribe lecsatolja ezeket?"
+
+#: src/pages/partitionpage.cpp:841
+msgid ""
 "Tribe failed to unmount a partition which is target for the installation. "
 "You need to unmount the partitions manually before you can proceed."
-msgstr ""
+msgstr "A Tribe nem tudta lecsatolni a telepítésre kijellölt particiókat. Kérjük a folytatás előtt manuálisan csatolja le ezeket a particiókat."
 
-#: src/pages/partitionpage.cpp:827
+#: src/pages/partitionpage.cpp:843
 msgid "Target partitions mounted"
-msgstr ""
+msgstr "A célparticiókat felcsatoltuk"
 
-#: src/pages/partitionpage.cpp:838
+#: src/pages/partitionpage.cpp:854
 msgid ""
-"The partition you have chosen to mount as '/' is too small. It should have a "
-"capacity of at least %1 for a successful installation."
-msgstr ""
+"The partition you have chosen to mount as '/' is too small. It should have a"
+" capacity of at least %1 for a successful installation."
+msgstr "A partíció amit '/'-ként szeretne felcsatolni, túl kicsi. Legalább %1 méretűnek kell lennie a sikeres telepítéshez."
 
-#: src/pages/partitionpage.cpp:841 src/pages/partitionpage.cpp:881
+#: src/pages/partitionpage.cpp:857 src/pages/partitionpage.cpp:897
 msgid "Target's capacity not sufficient"
-msgstr ""
+msgstr "A célpartíció mérete nem megfelelő."
 
-#: src/pages/partitionpage.cpp:861
+#: src/pages/partitionpage.cpp:877
 msgid ""
 "The partition you have chosen to mount as '/' is not marked for formatting. "
 "This might create problems. Do you still want to continue without formating "
 "it?"
-msgstr ""
+msgstr "A particiót amit '/' (root)-ként jelölt meg, nem állította be formázáshoz. Ez problémákhoz vezethet. Mindenképpen szeretné folytatni a telepítést?"
 
-#: src/pages/partitionpage.cpp:879
+#: src/pages/partitionpage.cpp:895
 msgid ""
 "You have selected '%1' as a mountpoint, which is not valid. A valid "
 "mountpoint always starts with '/' and represents a directory on disk"
-msgstr ""
+msgstr "Ön ezt adta meg csatolási pontnak: '%1', amely nem érvényes. Ahhoz, hogy érvényes legyen / -vel kell kezdődnie, ami egy könyvtárat jelent a merevlemezen."
 
-#: src/pages/partitionpage.cpp:890
+#: src/pages/partitionpage.cpp:906
 msgid ""
 "You need to select a root partition ('/') to proceed with the installation. "
-msgstr ""
+msgstr "Önnek meg kell adnia egy root particiót ('/'), hogy folytatni tudja a telepítést. "
 
-#: src/pages/partitionpage.cpp:911
+#: src/pages/partitionpage.cpp:927
 msgid ""
 "When using a GPT Partition Table you need to have a unformatted partition "
 "with the bios_grub flag!"
+msgstr "Amikor egy GPT Particiós Táblát használ, akkor szüksége van egy nem formázott particióra, bios_grub flag-gel ellátva!"
+
+#: src/pages/readyinstallpage.cpp:50
+msgid "Network install"
+msgstr "Hálózati telepítés"
+
+#: src/pages/readyinstallpage.cpp:52
+msgid "Offline install"
 msgstr ""
 
-#: src/pages/readyinstallpage.cpp:77
+#: src/pages/readyinstallpage.cpp:73
 msgid "New partition (%1) on %2"
+msgstr "Új partíció (%1) a %2 -n"
+
+#: src/pages/readyinstallpage.cpp:75
+msgid "%1 will be used as %2\n"
 msgstr ""
 
-#: src/pages/readyinstallpage.cpp:80
-msgid "%1 will be used as %2"
-msgstr "%1 %2-ként lesz használva"
+#: src/pages/readyinstallpage.cpp:79
+msgid ""
+"'%1' will be used as timezone\n"
+"'%2' will be used as language and '%3' will be used as locale\n"
+"Keyboard settings: %4  %5  %6"
+msgstr "'%1' időzónaként lesz használva\n'%2' lesz nyelvként használva és a '%3' lesz a billentyűzet nyelve\nBillentyűzet beállítások: %4  %5  %6"
 
-#: src/pages/readyinstallpage.cpp:100
+#: src/pages/readyinstallpage.cpp:102
 msgid "Continue"
-msgstr ""
+msgstr "Folytatás"
 
-#: src/pages/readyinstallpage.cpp:104
-#, fuzzy
+#: src/pages/readyinstallpage.cpp:106
 msgid ""
 "The following partitions appear to be mounted: %1. To let the installation "
 "happen correctly, Tribe will now unmount them."
-msgstr ""
-"A következő particiók csatolva vannak: %1. Hogy a telepítés sikeresen "
-"megtörténjen, a Tribe most le fogja választani őket."
+msgstr "Úgy tűnik ez a partició fel van csatolva: %1. Ahhoz, hogy a telepítés megfelelően folytatódjon, a Tribe most lecsatolja azt."
 
-#: src/pages/usercreationpage.cpp:148
+#: src/pages/usercreationpage.cpp:162
 msgid "You must give at least one login name."
-msgstr ""
-
-#: src/pages/usercreationpage.cpp:152
-#, fuzzy
-msgid "Root Passwords do not match..."
-msgstr "A jelszavak nem egyeznek meg"
+msgstr "Önnek legalább egy felhasználónevet meg kell adnia."
 
 #: src/pages/usercreationpage.cpp:166
-#, fuzzy
-msgid "Passwords cannot be empty."
-msgstr "A jelszó üres"
+msgid "Root Passwords cannot be empty."
+msgstr "A root jelszómező nem lehet üres."
 
 #: src/pages/usercreationpage.cpp:170
-#, fuzzy
-msgid "Passwords do not match..."
-msgstr "A jelszavak nem egyeznek meg"
+msgid "Root Passwords do not match..."
+msgstr "A root jelszó nem egyezik meg."
 
-#: src/pages/usercreationpage.cpp:174
+#: src/pages/usercreationpage.cpp:184
 msgid "Login names cannot be empty."
-msgstr ""
+msgstr "A felhasználónév mező nem lehet üres."
+
+#: src/pages/usercreationpage.cpp:188
+msgid "Login names must be unique."
+msgstr "A felhasználónévnek egyedinek kell lennie."
+
+#: src/pages/usercreationpage.cpp:193
+msgid "Passwords cannot be empty."
+msgstr "A jelszó mező nem lehet üres."
+
+#: src/pages/usercreationpage.cpp:197
+msgid "Passwords do not match..."
+msgstr "A jelszavak nem egyeznek..."
 
 #: src/pmhandler.cpp:360
-#, fuzzy
 msgid "Preparing hard drive for installation..."
-msgstr "Telepítés befejezése..."
+msgstr "A merevlemez előkészítése telepítéshez..."
 
 #: src/pmhandler.cpp:381
-#, fuzzy
 msgid "Analyzing disk..."
-msgstr "Telepítés..."
+msgstr "A merevlemez ellenőrzése..."
 
 #: src/pmhandler.cpp:445
 msgid "There was an error while formatting partitions"
-msgstr ""
+msgstr "Hiba lépet fel a partició formázása során."
 
 #: src/widgets/avatardialog.cpp:52 src/widgets/avatardialog.cpp:71
 msgid "Custom"
-msgstr ""
+msgstr "Egyedi"
+
+#: src/widgets/kbpreview/kbpreviewframe.cpp:333
+#: src/widgets/kbpreview/kbpreviewframe.cpp:353
+msgid "Ctrl"
+msgstr "Ctrl"
+
+#: src/widgets/kbpreview/kbpreviewframe.cpp:338
+msgid "Alt"
+msgstr "Alt"
+
+#: src/widgets/kbpreview/kbpreviewframe.cpp:348
+msgid "AltGr"
+msgstr "AltGr"
+
+#: src/widgets/kbpreview/kbpreviewframe.cpp:395
+msgid "No preview found"
+msgstr "Előnézet nem található"
+
+#: src/widgets/userwidget.cpp:32
+msgid "Usernames can not contain uppercase letters."
+msgstr "A felhasználónevek nem tartalmazhatnak nagybetűt."
+
+#: src/widgets/userwidget.cpp:34
+msgid "Usernames can not contain spaces."
+msgstr "A felhasználónevek nem tartalmazhatnak szóközt."
+
+#: src/widgets/userwidget.cpp:36
+msgid "%1 is not a valid character"
+msgstr "%1 nem elfogadható karakter."
 
 #. i18n: file: ui/pages/base.ui:172
 #. i18n: ectx: property (text), widget (QLabel, label_2)
 #: rc.cpp:6
-#, fuzzy
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Welcome</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Felkészülés</span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Welcome</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Üdvözöljük</span></p></body></html>"
 
 #. i18n: file: ui/pages/base.ui:198
 #. i18n: ectx: property (text), widget (QLabel, label_3)
 #. i18n: file: ui/pages/releasenotes.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, ReleaseNotes)
-#: rc.cpp:13 rc.cpp:391
+#: rc.cpp:13 rc.cpp:464
 msgid "Release Notes"
 msgstr "Kiadási jegyzetek"
 
@@ -533,415 +632,321 @@ msgstr "Kiadási jegyzetek"
 #. i18n: ectx: property (text), widget (QLabel, licenseLabel)
 #: rc.cpp:16
 msgid "License Approval"
-msgstr "Licensz jóváhagyás"
+msgstr "Licenc jóváhagyása"
 
-#. i18n: file: ui/pages/base.ui:257
-#. i18n: ectx: property (text), widget (QLabel, label_21)
-#: rc.cpp:19
-msgid "Ready to Install"
-msgstr "Kész a telepítésre"
-
-#. i18n: file: ui/pages/base.ui:283
-#. i18n: ectx: property (text), widget (QLabel, label_24)
-#: rc.cpp:22
-msgid "Language & Time"
-msgstr "Nyelv & Idő"
-
-#. i18n: file: ui/pages/base.ui:297
-#. i18n: ectx: property (text), widget (QLabel, label_25)
-#: rc.cpp:25
-msgid "Disk setup"
-msgstr "Lemez beállítás"
-
-#. i18n: file: ui/pages/base.ui:327
-#. i18n: ectx: property (text), widget (QLabel, label_26)
-#: rc.cpp:28
-msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Preparation</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Felkészülés</span></p></body></html>"
-
-#. i18n: file: ui/pages/base.ui:334
-#. i18n: ectx: property (text), widget (QLabel, label_15)
-#: rc.cpp:35
-#, fuzzy
-msgid "Create Users"
-msgstr "Felhasználó létrehozása"
-
-#. i18n: file: ui/pages/base.ui:390
+#. i18n: file: ui/pages/base.ui:261
 #. i18n: ectx: property (text), widget (QLabel, label_11)
-#: rc.cpp:38
+#: rc.cpp:19
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Installation</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Telepítés</span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Installation</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Telepítés</span></p></body></html>"
 
-#. i18n: file: ui/pages/base.ui:416
+#. i18n: file: ui/pages/base.ui:287
 #. i18n: ectx: property (text), widget (QLabel, label_13)
-#: rc.cpp:45
+#: rc.cpp:26
 msgid "Install System"
 msgstr "Rendszer telepítése"
 
-#. i18n: file: ui/pages/base.ui:453
+#. i18n: file: ui/pages/base.ui:324
 #. i18n: ectx: property (text), widget (QLabel, label_14)
-#: rc.cpp:48
+#: rc.cpp:29
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Configuration</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"weight:600; color:#ffffff;\">Konfiguráció</span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Configuration</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Konfiguráció</span></p></body></html>"
 
-#. i18n: file: ui/pages/base.ui:460
+#. i18n: file: ui/pages/base.ui:331
 #. i18n: ectx: property (text), widget (QLabel, label_16)
-#: rc.cpp:55
+#: rc.cpp:36
 msgid "Reboot / Enjoy"
+msgstr "Újraindítás"
+
+#. i18n: file: ui/pages/base.ui:410
+#. i18n: ectx: property (text), widget (QLabel, label_24)
+#: rc.cpp:39
+msgid "Language & Time"
+msgstr "Nyelv & idő"
+
+#. i18n: file: ui/pages/base.ui:443
+#. i18n: ectx: property (text), widget (QLabel, label_15)
+#: rc.cpp:42
+msgid "Create Users"
+msgstr "Felhasználók létrehozása"
+
+#. i18n: file: ui/pages/base.ui:469
+#. i18n: ectx: property (text), widget (QLabel, label_21)
+#: rc.cpp:45
+msgid "Ready to Install"
+msgstr "Kész a telepítésre"
+
+#. i18n: file: ui/pages/base.ui:514
+#. i18n: ectx: property (text), widget (QLabel, keyboardLabel)
+#: rc.cpp:48
+msgid "Keyboard"
+msgstr "Billentyűzet"
+
+#. i18n: file: ui/pages/base.ui:521
+#. i18n: ectx: property (text), widget (QLabel, label_25)
+#: rc.cpp:51
+msgid "Disk setup"
+msgstr "Lemez beállítása"
+
+#. i18n: file: ui/pages/base.ui:532
+#. i18n: ectx: property (text), widget (QLabel, label_26)
+#: rc.cpp:54
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Preparation</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\"> <html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600; color:#ffffff;\">Előkészítés</span></p></body></html>"
+
+#. i18n: file: ui/pages/base.ui:539
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:61
+msgid "Installation Type"
 msgstr ""
 
-#. i18n: file: ui/pages/base.ui:583
+#. i18n: file: ui/pages/base.ui:623
 #. i18n: ectx: property (text), widget (QPushButton, abortButton)
-#: rc.cpp:58
+#: rc.cpp:64
 msgid "Abort installation"
 msgstr "Telepítés megszakítása"
 
-#. i18n: file: ui/pages/base.ui:615
+#. i18n: file: ui/pages/base.ui:655
 #. i18n: ectx: property (text), widget (QPushButton, previousButton)
-#: rc.cpp:61
+#: rc.cpp:67
 msgctxt "Previous Page"
 msgid "Previous"
 msgstr "Előző"
 
-#. i18n: file: ui/pages/base.ui:634
+#. i18n: file: ui/pages/base.ui:674
 #. i18n: ectx: property (text), widget (QPushButton, nextButton)
-#: rc.cpp:64
+#: rc.cpp:70
 msgctxt "Next Page"
 msgid "Next"
 msgstr "Következő"
 
 #. i18n: file: ui/pages/bootloader.ui:46
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:67
+#: rc.cpp:73
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Bootloader Installation</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Betöltő telepítés</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Bootloader Installation</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Rendszerbetöltő telepítése</span></p></body></html>"
 
 #. i18n: file: ui/pages/bootloader.ui:58
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:74
-#, fuzzy
+#: rc.cpp:80
 msgid ""
 "You can now install GRUB as your main bootloader.\n"
 "\n"
 "If you are unsure where you should install the bootloader to, \n"
 "just leave the default value (hd0)."
-msgstr ""
-"Most már installálhatja a GRUB-ot elsődleges betöltőnek.\n"
-"\n"
-"Ha nem biztos benne, hogy hova installálja a betöltőt, akkor csak hagyja az "
-"alapértelmezett értéken (hd0)."
+msgstr "Most már telepítheti a GRUB-ot, mint a fő rendszerbetöltőjét.\n\nHa nem biztos benne, hogy hová telepítse a rendszerbetöltőt,\nakkor hagyja meg az alapértelmezett értéket (hd0)."
 
 #. i18n: file: ui/pages/bootloader.ui:71
 #. i18n: ectx: property (text), widget (QCheckBox, checkBox)
-#: rc.cpp:80
+#: rc.cpp:86
 msgid "Install Bootloader"
-msgstr "Betöltő telepítése"
+msgstr "Rendszerbetöltő telepítése"
 
 #. i18n: file: ui/pages/bootloader.ui:89
 #. i18n: ectx: property (text), widget (QPushButton, pushButton)
-#. i18n: file: ui/pages/partition.ui:260
+#. i18n: file: ui/pages/partition.ui:261
 #. i18n: ectx: property (toolTip), widget (QPushButton, advancedButton)
-#. i18n: file: ui/pages/partition.ui:263
+#. i18n: file: ui/pages/partition.ui:264
 #. i18n: ectx: property (text), widget (QPushButton, advancedButton)
-#: rc.cpp:83 rc.cpp:348 rc.cpp:351
+#: rc.cpp:89 rc.cpp:395 rc.cpp:398
 msgid "Advanced..."
-msgstr "Speciális..."
+msgstr "Haladó..."
 
 #. i18n: file: ui/pages/bootloader.ui:135
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:86
+#: rc.cpp:92
 msgid "Install to:"
 msgstr "Telepítés ide:"
 
 #. i18n: file: ui/pages/bootloader.ui:142
 #. i18n: ectx: property (text), widget (QLineEdit, lineEdit)
-#: rc.cpp:89
+#: rc.cpp:95
 msgid "hd0"
 msgstr "hd0"
 
 #. i18n: file: ui/pages/config.ui:46
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:92
-#, fuzzy
+#: rc.cpp:98
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"size:22pt; font-weight:600; color:#ffffff;\">Configuration</span></p></"
-"body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"size:22pt; font-weight:600; color:#ffffff;\">Rendszergazda beállítások</"
-"span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Configuration</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Konfiguráció</span></p></body></html>"
 
 #. i18n: file: ui/pages/config.ui:119
 #. i18n: ectx: property (text), widget (QCheckBox, usb)
-#: rc.cpp:99
+#: rc.cpp:105
 msgid "USB"
-msgstr ""
+msgstr "USB"
 
 #. i18n: file: ui/pages/config.ui:126
 #. i18n: ectx: property (text), widget (QCheckBox, nfs)
-#: rc.cpp:102
+#: rc.cpp:108
 msgid "NFS Shares"
-msgstr ""
+msgstr "NFS megosztások"
 
 #. i18n: file: ui/pages/config.ui:133
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:105
-#, fuzzy
+#: rc.cpp:111
 msgid "Activate support for booting from:"
-msgstr "NFS megosztásról történő betöltés támogatásának aktiválása"
+msgstr "Boot-olás aktív támogatása ezekről az eszközökről:"
 
 #. i18n: file: ui/pages/config.ui:140
 #. i18n: ectx: property (text), widget (QCheckBox, firewire)
-#: rc.cpp:108
+#: rc.cpp:114
 msgid "FireWire"
-msgstr ""
+msgstr "FireWire"
 
 #. i18n: file: ui/pages/config.ui:147
 #. i18n: ectx: property (text), widget (QCheckBox, raid)
-#: rc.cpp:111
+#: rc.cpp:117
 msgid "Software Raid Arrays"
-msgstr ""
+msgstr "Software Raid Arrays"
 
 #. i18n: file: ui/pages/config.ui:154
 #. i18n: ectx: property (text), widget (QCheckBox, lvm2)
-#: rc.cpp:114
+#: rc.cpp:120
 msgid "LVM2 Volumes"
-msgstr ""
+msgstr "LVM2 Volumes"
 
 #. i18n: file: ui/pages/config.ui:161
 #. i18n: ectx: property (text), widget (QCheckBox, encrypted)
-#: rc.cpp:117
+#: rc.cpp:123
 msgid "Encrypted Volumes"
-msgstr ""
+msgstr "Titkosított Meghajtók"
 
 #. i18n: file: ui/pages/config.ui:180
-#. i18n: ectx: property (text), widget (QPushButton, generateInitRamDiskButton)
-#: rc.cpp:120
+#. i18n: ectx: property (text), widget (QPushButton,
+#. generateInitRamDiskButton)
+#: rc.cpp:126
 msgid "Generate Initial Ramdisk"
-msgstr ""
+msgstr "Ramdisk generálása..."
 
 #. i18n: file: ui/pages/config.ui:216
 #. i18n: ectx: property (text), widget (QCheckBox, mdp)
-#: rc.cpp:123
-#, fuzzy
+#: rc.cpp:129
 msgid "MDP Partition Arrays"
-msgstr "Particionálásra felkészülés"
+msgstr "MDP Partition Arrays"
 
 #. i18n: file: ui/pages/config.ui:223
 #. i18n: ectx: property (text), widget (QCheckBox, pcmcia)
-#: rc.cpp:126
+#: rc.cpp:132
 msgid "PCMCIA"
-msgstr ""
+msgstr "PCMCIA"
 
 #. i18n: file: ui/pages/config.ui:314
 #. i18n: ectx: property (text), widget (QPushButton, bundlesDownloadButton)
-#: rc.cpp:129
-#, fuzzy
+#: rc.cpp:135
 msgid "Download"
-msgstr "Letöltési beállítások"
+msgstr "Letöltés"
 
 #. i18n: file: ui/pages/config.ui:408
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:132
+#: rc.cpp:138
 msgid "Chakra"
-msgstr ""
+msgstr "Chakra"
 
 #. i18n: file: ui/pages/config.ui:456
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:135
+#: rc.cpp:141
 msgid "Mac"
-msgstr ""
+msgstr "Mac"
 
 #. i18n: file: ui/pages/config.ui:485
 #. i18n: ectx: property (text), widget (QLabel, label_7)
-#: rc.cpp:138
+#: rc.cpp:144
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #. i18n: file: ui/pages/config.ui:564
 #. i18n: ectx: property (text), widget (QPushButton, colorizeButton)
-#: rc.cpp:141
+#: rc.cpp:147
 msgid "Colorize"
-msgstr ""
+msgstr "Színesítés"
 
 #. i18n: file: ui/pages/config.ui:679
 #. i18n: ectx: property (text), widget (QCheckBox, bootloaderCheckBox)
-#: rc.cpp:144
-#, fuzzy
+#: rc.cpp:150
 msgid "Install GRUB2"
-msgstr "Telepítés ide:"
+msgstr "GRUB2 telepítése"
 
 #. i18n: file: ui/pages/config.ui:690
 #. i18n: ectx: property (text), widget (QLabel, bootloaderLabel)
-#: rc.cpp:147
+#: rc.cpp:153
 msgid ""
 "You can now install GRUB2 as your main bootloader. \n"
-"Tribe will install GRUB2 on the same hard drive where your \"/boot\" folder "
-"is located."
-msgstr ""
+"Tribe will install GRUB2 on the same hard drive where your \"/boot\" folder is located."
+msgstr "Most már telepítheti a GRUB2-t, mint a fő rendszerbetöltőjét. \nA Tribe ugyanarra a merevlemezre telepíti majd a GRUB2-t, ahol a \"/boot\" mappa is megtalálható."
 
 #. i18n: file: ui/pages/config.ui:759
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#. i18n: file: ui/pages/partition.ui:149
-#. i18n: ectx: property (text), widget (KPushButton, editPartitionCancelButton)
+#. i18n: file: ui/pages/partition.ui:150
+#. i18n: ectx: property (text), widget (KPushButton,
+#. editPartitionCancelButton)
 #. i18n: file: ui/widgets/avatardialog.ui:114
 #. i18n: ectx: property (text), widget (QPushButton, cancelButton)
-#: rc.cpp:151 rc.cpp:342 rc.cpp:429
+#: rc.cpp:157 rc.cpp:389 rc.cpp:502
 msgid "Cancel"
-msgstr ""
+msgstr "Mégsem"
 
 #. i18n: file: ui/pages/config.ui:839
 #. i18n: ectx: property (text), widget (QPushButton, changeAppearanceButton)
-#: rc.cpp:154
+#: rc.cpp:160
 msgid "Change System Appearance"
-msgstr ""
+msgstr "A rendszer megjelenítésének megváltoztatása"
 
 #. i18n: file: ui/pages/config.ui:877
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:160
-#, fuzzy
+#: rc.cpp:166
 msgid "Advanced Options"
-msgstr "Ramdiszk beállítások"
+msgstr "Haladó beállítások"
 
 #. i18n: file: ui/pages/config.ui:940
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:169
+#: rc.cpp:175
 msgid ""
-"Now that you have a Chakra install, you can now configure it to your liking."
-msgstr ""
+"Your newly installed Chakra system is ready.  Here you can choose advanced "
+"extra options like creating initial ramfs for booting from an usb device or "
+"using an existing bootloader to add Chakra to (not having Tribe install "
+"GRUB2). "
+msgstr "Az ön telepített Chakra rendszere készen áll. Itt most választhat olyan extra lehetőség közül, mint például boot-olás USB eszközről vagy a Chakra hozzáadása egy meglévő rendszerbetöltőhöz (ilyenkor a Tribe nem telepíti fel a GRUB2-t)."
 
 #. i18n: file: ui/pages/finish.ui:46
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:172
-#, fuzzy
+#: rc.cpp:178
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Installation Completed!</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Telepítés Befejeződött !</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Installation Completed!</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">A telepítés befejeződött!</span></p></body></html>"
 
 #. i18n: file: ui/pages/finish.ui:68
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:179
-#, fuzzy
+#: rc.cpp:185
 msgid ""
 "Congratulations, the installation has been completed!\n"
 "\n"
@@ -949,426 +954,293 @@ msgid ""
 "You can now reboot into the installed system or keep using the LiveCD.\n"
 "\n"
 "In case you want to check the installation logs,\n"
-"take a look into /tmp on the live system or into /var/log on the installed "
-"system.\n"
+"take a look into /tmp on the live system or into /var/log on the installed system.\n"
 "\n"
-"Thanks for using Chakra, and get in touch with us in the forums, share "
-"opinions, give advices;\n"
+"Thanks for using Chakra, and get in touch with us in the forums, share opinions, give advices;\n"
 "To put it simple: Get involved! (http://chakra-project.org)\n"
 "\n"
 "Have Fun!\n"
 "\n"
 "The Chakra Team"
-msgstr ""
-"Gratulálunk, a telepítés befejeződött! Reméljük legalább annyira élvezte, "
-"amit látott, mint amennyire mi élveztük a létrehozását.\n"
-"\n"
-"Most újraindíthatja a rendszerét vagy folytathatja a LiceCD használatát.\n"
-"\n"
-"Abban az esetben, ha meg szeretné tekinteni a telepítése logokat, nézzen be  "
-"a /tmp könyvtárba az élő rendszeren vagy a /var/log könyvtárba a telepített "
-"rendszeren. \n"
-"\n"
-"Köszönjük, hogy a Chakra-t választotta, és maradjon kapcsolatban Velünk a "
-"fórumokon, ossza meg véleményét, adjon tanácsokat;\n"
-"Egyszerűen: Maradjon részese! (http://chakra-project.org)\n"
-"\n"
-"Kellemes Időtöltést Kíván!\n"
-"\n"
-"A Chakta csapat"
+msgstr "Gratulálunk, a telepítés befejeződött!\n\nReméljük, hogy annyira élvezni fogja a használatát, mint amennyire mi az elkészítését.\nMost már újraindíthatja a rendszert vagy továbbra is használhatja a LiveCD-t.\nHa meg akarja tekinteni a telepítésról szóló naplófájlokat,\nakkor az élő rendszeren nézze meg a /tmp könyvtárat, vagy újraindítás után a /var/log mappát.\nKöszönjük, hogy a Chakra-t használja és lépjen kapcsolatba velük a fórumunkon és mondja el véleményét és ötleteit! (http://chakra-project.org)\n\nJó időtöltést kivánunk!\n\nA Chakra Csapat"
 
 #. i18n: file: ui/pages/finish.ui:105
 #. i18n: ectx: property (text), widget (QPushButton, rebootButton)
-#: rc.cpp:195
+#: rc.cpp:201
 msgid "Restart Computer"
 msgstr "Számítógép újraindítása"
 
 #. i18n: file: ui/pages/finish.ui:118
 #. i18n: ectx: property (text), widget (QPushButton, chakraButton)
-#: rc.cpp:198
+#: rc.cpp:204
 msgid "Keep using the LiveCD"
-msgstr "LiveCD használatának megtartása"
+msgstr "LiveCD használatának folytatása"
 
 #. i18n: file: ui/pages/init.ui:13
 #. i18n: ectx: property (windowTitle), widget (QWidget, tribeInit)
-#: rc.cpp:201
+#: rc.cpp:207
 msgid "Ramdisk"
-msgstr "Ramdiszk"
+msgstr "Ramdisk"
 
 #. i18n: file: ui/pages/init.ui:49
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:204
+#: rc.cpp:210
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Ramdisk Setup</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Ramdiszk Beállítás</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Ramdisk Setup</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Ramdisk Beállítása</span></p></body></html>"
 
 #. i18n: file: ui/pages/init.ui:58
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:211
+#: rc.cpp:217
 msgid ""
-"Your hardware will be configured automatically during the installation and a "
-"initial ramdisk environment for booting the linux kernel will be built. "
+"Your hardware will be configured automatically during the installation and a"
+" initial ramdisk environment for booting the linux kernel will be built. "
 "Everything should happen without intervention, but you might need some "
 "options for special boot methods. If you are unsure on what this means, "
 "simply press the \"Next\" button. Otherwise check out the ramdisk options "
 "below and select the items you need for your system."
-msgstr ""
-"A hardvere automatikusan konfigurálva lesz a telepítés ideje alatt és egy "
-"beállítási ramdiszk környezet építve a linux kernel betöltésére. Minden "
-"beavatkozás nélkül, de szüksége van néhány opcióra a speciális "
-"betöltésifolyamathoz. Ha nem biztos benne, hogy ez mit jelent, egyszerűen "
-"nyomja meg a \"Következő\" gombot. Máskülönben ellenőrizze le a ramdiszk "
-"opciókat alul és válassza ki azokat az elemeket, amelyekre szüksége van az "
-"Ön rendszeréhez."
+msgstr "A hardvere automatikusan konfigurálva lesz a telepítés ideje alatt és egy beállítási ramdiszk környezet építve a linux kernel betöltésére. Minden beavatkozás nélkül, de szüksége van néhány opcióra a speciális betöltésifolyamathoz. Ha nem biztos benne, hogy ez mit jelent, egyszerűen nyomja meg a \"Következő\" gombot. Máskülönben ellenőrizze le a ramdiszk opciókat alul és válassza ki azokat az elemeket, amelyekre szüksége van az Ön rendszeréhez."
 
 #. i18n: file: ui/pages/init.ui:81
 #. i18n: ectx: property (text), widget (QPushButton, pushButton)
-#: rc.cpp:214
+#: rc.cpp:220
 msgid "Ramdisk Options"
-msgstr "Ramdiszk beállítások"
+msgstr "Ramdisk beállítások"
 
 #. i18n: file: ui/pages/init.ui:111
 #. i18n: ectx: property (text), widget (QCheckBox, usb)
-#: rc.cpp:217
+#: rc.cpp:223
 msgid "Activate support for booting from USB devices"
 msgstr "USB eszközről történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/init.ui:118
 #. i18n: ectx: property (text), widget (QCheckBox, firewire)
-#: rc.cpp:220
+#: rc.cpp:226
 msgid "Activate support for booting from FireWire devices"
 msgstr "FireWire eszközről történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/init.ui:125
 #. i18n: ectx: property (text), widget (QCheckBox, pcmcia)
-#: rc.cpp:223
+#: rc.cpp:229
 msgid "Activate support for booting from PCMCIA devices"
 msgstr "PCMCIA eszközről történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/init.ui:132
 #. i18n: ectx: property (text), widget (QCheckBox, nfs)
-#: rc.cpp:226
+#: rc.cpp:232
 msgid "Activate support for booting from NFS shares"
 msgstr "NFS megosztásról történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/init.ui:139
 #. i18n: ectx: property (text), widget (QCheckBox, raid)
-#: rc.cpp:229
+#: rc.cpp:235
 msgid "Activate support for booting from Software Raid arrays"
 msgstr "Szoftveres raid tömbökről történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/init.ui:146
 #. i18n: ectx: property (text), widget (QCheckBox, mdp)
-#: rc.cpp:232
+#: rc.cpp:238
 msgid "Activate support for booting from Software Raid/MDP Partition arrays"
-msgstr ""
-"Szoftveres rad/MDP partició tömbökről történő betöltés támogatásánakaktiálása"
+msgstr "Szoftveres rad/MDP partició tömbökről történő betöltés támogatásánakaktiálása"
 
 #. i18n: file: ui/pages/init.ui:153
 #. i18n: ectx: property (text), widget (QCheckBox, lvm2)
-#: rc.cpp:235
+#: rc.cpp:241
 msgid "Activate support for booting from LVM2 volumes"
 msgstr "LVM2 kötetről történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/init.ui:160
 #. i18n: ectx: property (text), widget (QCheckBox, encrypted)
-#: rc.cpp:238
+#: rc.cpp:244
 msgid "Activate support for booting from Encrypted volumes"
 msgstr "Titkosított kötetről történő betöltés támogatásának aktiválása"
 
 #. i18n: file: ui/pages/installation.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, Installation)
-#: rc.cpp:241
+#: rc.cpp:247
 msgid "Tribe Installation"
 msgstr "Tribe telepítés"
 
 #. i18n: file: ui/pages/installation.ui:101
 #. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
-#: rc.cpp:244
+#: rc.cpp:250
 msgid "Nine Inch Nails - Discipline"
-msgstr "9 ujjkörmös - Önfegyelem"
+msgstr "Nine Inch Nails - Discipline"
 
 #. i18n: file: ui/pages/installation.ui:106
 #. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
-#: rc.cpp:247
+#: rc.cpp:253
 msgid "Severed Fifth - War"
-msgstr "Egyszerű ötödik - Háború"
+msgstr "Severed Fifth - War"
 
 #. i18n: file: ui/pages/installation.ui:111
 #. i18n: ectx: property (text), item, widget (QComboBox, comboBox)
-#: rc.cpp:250
+#: rc.cpp:256
 msgid "Dunkelstern - Out of the box"
-msgstr ""
+msgstr "Dunkelstern - Out of the box"
 
 #. i18n: file: ui/pages/intro.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, Intro)
-#: rc.cpp:253
+#: rc.cpp:259
 msgid "Tribe Intro"
 msgstr "Tribe bevezető"
 
-#. i18n: file: ui/pages/intro.ui:105
+#. i18n: file: ui/pages/intro.ui:106
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:256
-#, fuzzy
+#: rc.cpp:262
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:12pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; color:#eeeeee;\">Welcome to the "
-"Chakra Installation!</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; color:#eeeeee;"
-"\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; "
-"color:#eeeeee;\">This installer will guide you through the process of "
-"installing</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; "
-"color:#eeeeee;\">the Chakra live system on your computer. After the "
-"installation you will</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; "
-"color:#eeeeee;\">have a ready-to-use Chakra Linux system.</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; font-"
-"weight:536; color:#eeeeee;\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; "
-"color:#eeeeee;\"> Please carefully read all of the instructions.</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; color:#eeeeee;"
-"\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; "
-"color:#eeeeee;\"> Remember:</span><span style=\" font-family:'Bitstream Vera "
-"Sans'; font-size:8pt; font-weight:536;\"> </span><span style=\" font-"
-"family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#ff0000;"
-"\">THIS IS ALPHA SOFTWARE, IT COULD EAT YOUR HAMSTER</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; font-"
-"weight:536; color:#ff0000;\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; "
-"color:#eeeeee;\">Have fun! - The Chakra Developers</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; color:#eeeeee;\">Welcome to the Chakra Installation!</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; color:#eeeeee;\"></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">This installer will guide you through the process of installing</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">the Chakra live system on your computer. After the installation you will</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">have a ready-to-use Chakra Linux system.</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"> Please carefully read all of the instructions, understand LVM, RAID</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"> and automated partitioning are not supported at this time.</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; color:#eeeeee;\"></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"> Remember:</span><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536;\"> </span><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#ff0000;\">Tribe should be good to your hamster...but it has its limitations</span></p>\n"
+"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#ff0000;\"></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">Have fun! - The Chakra Developers</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:12pt; font-weight:400; font-style:normal;\">\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; color:#eeeeee;\">Üdvözli önt a Chakra Linux telepítője!</span></p>\n<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; color:#eeeeee;\"></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">A telepítő segít végigvezetni önt a Chakra</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">telepítésén. A telepítés után önnek</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">egy kész Chakra Linux rendszer áll majd rendelkezésére.</span></p>\n<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"> Kérjük övatosan olvassa el az instrukciókat, és vegye figyelembe, hogy az LVM, RAID</span></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"> és az automatikus partícionálás jelenleg nem támogatott.</span></p>\n<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; color:#eeeeee;\"></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\"> Ne feledje:</span><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536;\"> </span><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#ff0000;\">A Tribe gondoskodik a hörcsögéről...de megvannak a határai</span></p>\n<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#ff0000;\"></p>\n<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:'Bitstream Vera Sans'; font-size:8pt; font-weight:536; color:#eeeeee;\">Használja sokáig! - A Chakra Fejlesztőcsapata</span></p></body></html>"
+
+#. i18n: file: ui/pages/keyboard.ui:14
+#. i18n: ectx: property (windowTitle), widget (QWidget, Keyboard)
+#: rc.cpp:280
+msgid "Keyboard Setup"
+msgstr "Billentyűzet beállítása"
+
+#. i18n: file: ui/pages/keyboard.ui:26
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:283
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-size:14pt; color:#eeeeee;\">Üdvözöli Önt a Chakra Telepítő!</"
-"span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; color:#eeeeee;\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:"
-"#eeeeee;\"><span style=\" font-weight:600;\">Tribe, a telepítőnk, végig  "
-"fogja vezeti a Chakra rendszer telepítésének folyamatán</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
-"weight:600; color:#eeeeee;\">a számítógépére. A telepítés után egy kész "
-"Arch  Linux</p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
-"weight:600; color:#eeeeee;\">asztali környezetet fog kapni a moduláris "
-"KDEcsomagjainkkal együtt.</p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; font-weight:600; color:#eeeeee;\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
-"weight:600; color:#eeeeee;\"> Kérem töltsön időt minden text és leírás "
-"alapos tanulmányozásával.</p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; color:#eeeeee;\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span "
-"style=\" font-weight:600; color:#eeeeee;\"> Emlékeztetőül:</span><span style="
-"\" font-weight:600;\"> </span><span style=\" font-weight:600; color:#ff0000;"
-"\">EZ EGY ALPHA SZOFTVER, EZ MEGEHETI A HÖRCSÖGÉT</span></p>\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-"
-"bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-"
-"indent:0px; font-weight:600; color:#ff0000;\"></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-"
-"left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-"
-"weight:600; color:#ff0000;\"><span style=\" color:#eeeeee;\">Kellemes "
-"időtöltést - A Chakra Fejlesztők</span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Keyboard Setup</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Billentyűzet beállítása</span></p></body></html>"
+
+#. i18n: file: ui/pages/keyboard.ui:40
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:290
+msgid ""
+"Tribe will automatically try to detect your keyboard layout based on the settings you have selected during the boot.\n"
+"You can modify it to your liking, and type a few words to test your layout."
+msgstr "A Tribe telepítő megpróbálja automaikusan érzékelni a billentyűzet beállításokat, az alapján amit a boot során megadott.\nTetszés szerint beállíthatja magának, és a teszt mezőben ki is próbálhatja."
+
+#. i18n: file: ui/pages/keyboard.ui:127
+#. i18n: ectx: property (text), widget (QLabel, lblLanguage)
+#: rc.cpp:294
+msgid "Layout:"
+msgstr "Kiosztás:"
+
+#. i18n: file: ui/pages/keyboard.ui:153
+#. i18n: ectx: property (text), widget (QLabel, lblVariant)
+#: rc.cpp:297
+msgid "Variant:"
+msgstr "Változat:"
+
+#. i18n: file: ui/pages/keyboard.ui:192
+#. i18n: ectx: property (text), widget (QLabel, lblTestLayout)
+#: rc.cpp:300
+msgid "Test Layout:"
+msgstr "Tesztterület:"
 
 #. i18n: file: ui/pages/license.ui:49
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:273
+#: rc.cpp:303
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"size:22pt; font-weight:600; color:#ffffff;\">License Approval</span></p></"
-"body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"size:22pt; font-weight:600; color:#ffffff;\">Licensz jóváhagyás</span></p></"
-"body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">License Approval</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Licenc jóváhagyása</span></p></body></html>"
 
 #. i18n: file: ui/pages/license.ui:61
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:280
+#: rc.cpp:310
 msgid ""
 "Chakra includes some proprietary software like hardware drivers, media "
 "plugins and fonts. To install them, you have to read and accept their "
 "licenses. If you choose against a license, the installer will try to use a "
 "free solution (if one is available)."
-msgstr ""
-"A Chakra tartalmaz néhány saját szoftvert, úgymint hardver meghajtókat, "
-"média bővítményeket és betűket. El kell olvasnia és fogadnia a licenszeiket "
-"a telepítésükhöz Ha egy licensz nem tetszik Önnek, akkor a telepítő "
-"megpróbál egy ingyenes megoldást találni(ha elérhető)."
+msgstr "A Chakra tartalmaz néhány zárt szoftvert, mint például hardver meghajtókat, média bővítményeket és betűtípusokat. A telepítésükhöz el kell olvasnia és el kell fogadnia a hozzájuk tartozó licenceket. Ha nem fogadja el az adott licencet, akkor a telepítő megpróbál önnek egy szabad megoldást felajánlania, ha az elérhető."
 
 #. i18n: file: ui/pages/license.ui:74
 #. i18n: ectx: property (text), widget (QLabel, licenseLabel)
-#: rc.cpp:283
+#: rc.cpp:313
 msgid "Approve license for:"
-msgstr "A következő licensz jóváhagyása:"
+msgstr "A következő licenc jóváhagyása:"
 
 #. i18n: file: ui/pages/license.ui:103
 #. i18n: ectx: property (text), widget (QRadioButton, declineButton)
-#: rc.cpp:286
+#: rc.cpp:316
 msgid "Decline License"
-msgstr "Licensz elutasítása"
+msgstr "Licenc elutasítása"
 
 #. i18n: file: ui/pages/license.ui:110
 #. i18n: ectx: property (text), widget (QRadioButton, acceptButton)
-#: rc.cpp:289
+#: rc.cpp:319
 msgid "Accept License"
-msgstr "Licensz elfogadása"
+msgstr "Licenc elfogadása"
 
 #. i18n: file: ui/pages/locale.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, Locale)
-#: rc.cpp:292
+#: rc.cpp:322
 msgid "Form"
 msgstr "Forma"
 
 #. i18n: file: ui/pages/locale.ui:35
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:295
+#: rc.cpp:325
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Language &amp; Time</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Nyelv &amp; Idő</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Language &amp; Time</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Nyelv &amp; idő</span></p></body></html>"
 
 #. i18n: file: ui/pages/locale.ui:45
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:302
+#: rc.cpp:332
 msgid ""
-"Please select the nearest city on the globe so the installer can suggest the "
-"locale and timezone settings for you. You can fine-tune the suggested "
+"Please select the nearest city on the globe so the installer can suggest the"
+" locale and timezone settings for you. You can fine-tune the suggested "
 "settings at the bottom of the page. If you cant find your region or city on "
 "the globe, you can zoom in by using the slider on the left."
-msgstr ""
-"Kérem válassza ki a legközelebbi várost a földgömbön, hogy a telepítő képes "
-"legyen felajánlani a helyi és időzóna beállításokat. Behangolhatja az "
-"ajánlott beállításokat a lap alján. Ha nem találja a területét vagy városát "
-"a földgömbön, akkor közelítsen rá a bal oldalon található csúszka "
-"használatával."
+msgstr "Kérem válassza ki a legközelebbi várost a földgömbön, hogy a telepítő fel tudja ajánlani önnek a helyi és időzóna beállításokat. Ezeket részletesen beállíthatja a lap alján is. Ha nem találja a területét vagy városát a földgömbön, akkor közelítsen rá a bal oldalon található csúszka segítségével."
 
 #. i18n: file: ui/pages/locale.ui:69
 #. i18n: ectx: property (clickMessage), widget (KLineEdit, locationsSearch)
-#: rc.cpp:305
+#: rc.cpp:335
 msgid "Search..."
 msgstr "Keresés..."
 
 #. i18n: file: ui/pages/locale.ui:162
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:308
-#, fuzzy
+#: rc.cpp:338
 msgid "Continent:"
-msgstr "Csatolópont:"
+msgstr "Földrész:"
 
 #. i18n: file: ui/pages/locale.ui:185
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:311
+#: rc.cpp:341
 msgid "Language:"
 msgstr "Nyelv:"
 
 #. i18n: file: ui/pages/locale.ui:208
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:314
+#: rc.cpp:344
 msgid "Locale:"
 msgstr "Hely:"
 
@@ -1376,387 +1248,384 @@ msgstr "Hely:"
 #. i18n: ectx: property (text), widget (QCheckBox, showLocalesCheck)
 #. i18n: file: ui/pages/locale.ui:270
 #. i18n: ectx: property (text), widget (QCheckBox, showKDELangsCheck)
-#: rc.cpp:317 rc.cpp:320
+#: rc.cpp:347 rc.cpp:350
 msgid "Show all"
-msgstr "Mind mutatása"
+msgstr "Összes mutatása"
 
 #. i18n: file: ui/pages/locale.ui:277
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:323
-#, fuzzy
+#: rc.cpp:353
 msgid "Region: "
-msgstr "Bejelentkezés:"
+msgstr "Terület:"
+
+#. i18n: file: ui/pages/netinst.ui:35
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:356
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Installation Type</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Telepítés típusa</span></p></body></html>"
+
+#. i18n: file: ui/pages/netinst.ui:48
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:363
+msgid "Select the type of installation you wish to perform."
+msgstr ""
+
+#. i18n: file: ui/pages/netinst.ui:96
+#. i18n: ectx: property (text), widget (QRadioButton, isoinst)
+#: rc.cpp:366
+msgid ""
+"Offline Installation.  This installs the system from the packages included "
+"on the ISO, default option"
+msgstr ""
+
+#. i18n: file: ui/pages/netinst.ui:109
+#. i18n: ectx: property (text), widget (QRadioButton, netinst)
+#: rc.cpp:369
+msgid ""
+"Network Installation.  Downloads and installs a minimal working KDE desktop."
+"  Network install speed depends fully on your download speeds."
+msgstr ""
 
 #. i18n: file: ui/pages/partition.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, Partition)
-#: rc.cpp:326
-#, fuzzy
+#: rc.cpp:372
 msgid "Partition"
-msgstr "Partició:"
+msgstr "Partició"
 
 #. i18n: file: ui/pages/partition.ui:43
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:329
+#: rc.cpp:375
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Disk setup</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Lemez beállítás</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Disk setup</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Lemez beállítása</span></p></body></html>"
 
-#. i18n: file: ui/pages/partition.ui:58
+#. i18n: file: ui/pages/partition.ui:59
 #. i18n: ectx: property (text), widget (QLabel, descriptionLabel)
-#: rc.cpp:336
+#: rc.cpp:382
 msgid ""
-"Please select a mountpoint for your partitions. No permanent changes to your "
-"hard drive will be made when you will press \"Next\". Note: selected "
-"partitions are not explicitly formatted."
-msgstr ""
+"Please select a mountpoint for your partitions. No permanent changes to your hard drive will be made when you will press \"Next\". Note: selected partitions are not explicitly formatted.\n"
+"If later during this install you choose to install a bootloader, Tribe will install GRUB2 on the same hard drive where your \"/boot\" partition is located"
+msgstr "Kérjük jelöljön ki csatolási pontokat a partícióinak. A \"Következő\" gomb megnyomása utána a merevlemez beállításai nem lesznek véglegesek. Megjegyzés: a kijelölt partíciók nem lesznek formázva.\nHa később a telepítés során rendszerbetöltőt kíván telepíteni, akkor a Tribe a GRUB2-t fogja feltelepíteni önnek ugyanarra a merevlemezre, ahol a \"/boot\" partíció is megtalálható."
 
-#. i18n: file: ui/pages/partition.ui:103
+#. i18n: file: ui/pages/partition.ui:104
 #. i18n: ectx: property (text), widget (QLabel, filesystemLabel)
-#: rc.cpp:339
+#: rc.cpp:386
 msgid "Filesystem: "
-msgstr ""
+msgstr "Fájlrendszer:"
 
-#. i18n: file: ui/pages/partition.ui:201
+#. i18n: file: ui/pages/partition.ui:202
 #. i18n: ectx: property (text), widget (KPushButton, editPartitionOkButton)
 #. i18n: file: ui/widgets/avatardialog.ui:85
 #. i18n: ectx: property (text), widget (QPushButton, okButton)
-#: rc.cpp:345 rc.cpp:426
+#: rc.cpp:392 rc.cpp:499
 msgid "Ok"
-msgstr ""
+msgstr "Ok"
 
-#. i18n: file: ui/pages/partition.ui:298
+#. i18n: file: ui/pages/partition.ui:299
 #. i18n: ectx: property (text), widget (QPushButton, formatButton)
-#: rc.cpp:354
-#, fuzzy
+#: rc.cpp:401
 msgid "Format"
-msgstr "Forma"
+msgstr "Formázás"
 
-#. i18n: file: ui/pages/partition.ui:317
+#. i18n: file: ui/pages/partition.ui:318
 #. i18n: ectx: property (toolTip), widget (QPushButton, undoButton)
-#. i18n: file: ui/pages/partition.ui:320
+#. i18n: file: ui/pages/partition.ui:321
 #. i18n: ectx: property (text), widget (QPushButton, undoButton)
-#: rc.cpp:357 rc.cpp:360
+#: rc.cpp:404 rc.cpp:407
 msgid "Undo"
-msgstr ""
+msgstr "Visszavonás"
 
-#. i18n: file: ui/pages/partition.ui:336
+#. i18n: file: ui/pages/partition.ui:337
 #. i18n: ectx: property (toolTip), widget (QPushButton, unmountButton)
-#: rc.cpp:363
-#, fuzzy
+#: rc.cpp:410
 msgid "Unmount the selected partition"
-msgstr "Időzóna kiválasztása szükséges."
+msgstr "Kijelölt partició lecsatolása"
 
-#. i18n: file: ui/pages/readyinstall.ui:51
+#. i18n: file: ui/pages/readyinstall.ui:35
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:366
+#: rc.cpp:413
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Ready to Install</span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:"
-"#ffffff;\">Készen áll a telepítésre</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Ready to Install</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Készen áll a telepítésre</span></p></body></html>"
 
-#. i18n: file: ui/pages/readyinstall.ui:77
+#. i18n: file: ui/pages/readyinstall.ui:59
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:373
+#: rc.cpp:420
 msgid ""
-"The system will be installed with the following settings. Before continuing, "
-"please review your selections:\n"
-msgstr ""
-"A rendszer a következő beállításokkal lesz telepítve. A folytatás előtt "
-"kérem ellenőrizze le a választásait:\n"
+"The system will be installed with the following settings. Before continuing,"
+" please review your selections:\n"
+msgstr "A rendszer a következő beállításokkal lesz telepítve. A folytatás előtt kérem ellenőrizze le a választásait:\n"
 
-#. i18n: file: ui/pages/readyinstall.ui:147
-#. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:377
+#. i18n: file: ui/pages/readyinstall.ui:94
+#. i18n: ectx: property (text), widget (QLabel, installTitle)
+#: rc.cpp:424
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:"
-"#eeeeee;\">The following partitions will be used:</span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">The following installation will be performed:</span></p></body></html>"
 msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:"
-"#eeeeee;\">A következő particiók lesznek használva:</span></p></body></html>"
 
-#. i18n: file: ui/pages/readyinstall.ui:211
+#. i18n: file: ui/pages/readyinstall.ui:104
+#. i18n: ectx: property (text), widget (QLabel, installLabel)
+#. i18n: file: ui/pages/readyinstall.ui:146
+#. i18n: ectx: property (text), widget (QLabel, mountLabel)
+#. i18n: file: ui/pages/readyinstall.ui:197
 #. i18n: ectx: property (text), widget (QLabel, formatLabel)
-#: rc.cpp:384
-msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:"
-"#eeeeee;\">The following partitions will be formatted:</span></p></body></"
-"html>"
+#. i18n: file: ui/pages/readyinstall.ui:248
+#. i18n: ectx: property (text), widget (QLabel, timezoneLabel)
+#: rc.cpp:431 rc.cpp:441 rc.cpp:451 rc.cpp:461
+msgid "TextLabel"
 msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+
+#. i18n: file: ui/pages/readyinstall.ui:136
+#. i18n: ectx: property (text), widget (QLabel, mountTitel)
+#: rc.cpp:434
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-"
-"size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; "
-"font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:"
-"#eeeeee;\">A következő particiók lesznek leformázva:</span></p></body></html>"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">The following partitions will be used:</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">A következő particiók lesznek használva:</span></p></body></html>"
+
+#. i18n: file: ui/pages/readyinstall.ui:187
+#. i18n: ectx: property (text), widget (QLabel, formatTitel)
+#: rc.cpp:444
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">The following partitions will be formatted:</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">A következő particiók lesznek formázva:</span></p></body></html>"
+
+#. i18n: file: ui/pages/readyinstall.ui:238
+#. i18n: ectx: property (text), widget (QLabel, timezoneTitel)
+#: rc.cpp:454
+msgid ""
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">Language and timezone settings:</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Bitstream Vera Sans'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;\"><span style=\" font-size:12pt; font-weight:600; color:#eeeeee;\">Nyelv és időzóna beállítások:</span></p></body></html>"
 
 #. i18n: file: ui/pages/releasenotes.ui:47
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:394
+#: rc.cpp:467
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><span "
-"style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Release Notes</"
-"span></p></body></html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><span "
-"style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Kiadási "
-"megjegyzések</span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Release Notes</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:10pt;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Kiadási megjegyzések</span></p></body></html>"
 
 #. i18n: file: ui/pages/releasenotes.ui:60
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:401
+#: rc.cpp:474
 msgid ""
 "Check out what's new, the known issues and general information about this "
 "version of Chakra. As always, you are encouraged to tell us what you think, "
 "either by visiting our forums or bug tracker."
-msgstr ""
-"Nézze meg az újdonságokat, az ismert hibákat és az általános információkat a "
-"Chakra ezen verziójáról. Mint mindig, biztatjuk arra, hogy mondja el, amit "
-"gondol, vagy látogasson el fórumokra vagy a bug követőnkre."
+msgstr "Nézze meg az újdonságokat, az ismert hibákat és az általános információkat a Chakra jelenlegi verziójáról. Mint mindig, biztatjuk arra, hogy mondja el, amit gondol, azzal, hogy ellátogat a fórumunkra vagy jelzi a hibákat a hibakövetőnben."
 
 #. i18n: file: ui/pages/usercreation.ui:35
 #. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:404
-#, fuzzy
+#: rc.cpp:477
 msgid ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
+"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"size:22pt; font-weight:600; color:#ffffff;\">Create Users</span></p></body></"
-"html>"
-msgstr ""
-"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/"
-"REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css"
-"\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-"
-"weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-"
-"right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-"
-"size:22pt; font-weight:600; color:#ffffff;\">Rendszergazda beállítások</"
-"span></p></body></html>"
+"</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Create Users</span></p></body></html>"
+msgstr "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\np, li { white-space: pre-wrap; }\n</style></head><body style=\" font-family:'Sans Serif'; font-size:14pt; font-weight:400; font-style:normal;\">\n<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:22pt; font-weight:600; color:#ffffff;\">Felhasználók létrehozása</span></p></body></html>"
 
 #. i18n: file: ui/pages/usercreation.ui:42
 #. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:411
+#: rc.cpp:484
 msgid "Enter at least one login name and password."
-msgstr ""
+msgstr "Adjon meg legalább egy felhasználónevet és jelszót."
 
 #. i18n: file: ui/pages/usercreation.ui:178
 #. i18n: ectx: property (toolTip), widget (QPushButton, addUser)
-#: rc.cpp:414
-#, fuzzy
+#: rc.cpp:487
 msgid "Add another user account."
-msgstr "További felhasználó hozzáadása.."
+msgstr "Még egy felhasználói fiók megadása"
 
 #. i18n: file: ui/pages/usercreation.ui:286
 #. i18n: ectx: property (text), widget (QLabel, hostname_extra_label)
-#: rc.cpp:417
+#: rc.cpp:490
 msgid ""
 "<small>This name will be used if you make the computer visible to others on "
 "a network.</small>"
-msgstr ""
+msgstr "<small>Az ön számítógépe ezen a néven lesz ismert a hálózaton, ha ön azt láthatóvá teszt.</small>"
 
 #. i18n: file: ui/pages/usercreation.ui:299
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:420
-#, fuzzy
+#: rc.cpp:493
 msgid "...and, what is the name of this computer?"
-msgstr "Ezen számítógép neve:"
+msgstr "...és mi legyen az ön számítógépének a neve?"
 
 #. i18n: file: ui/widgets/avatardialog.ui:14
 #. i18n: ectx: property (windowTitle), widget (QWidget, AvatarDialog)
-#: rc.cpp:423
+#: rc.cpp:496
 msgid "Select an Avatar..."
+msgstr "Kép kiválasztása..."
+
+#. i18n: file: ui/widgets/errorhandling.ui:14
+#. i18n: ectx: property (windowTitle), widget (QMainWindow, MainWindow)
+#: rc.cpp:505
+msgid "MainWindow"
+msgstr "FőAblak"
+
+#. i18n: file: ui/widgets/errorhandling.ui:31
+#. i18n: ectx: attribute (title), widget (QWidget, tab)
+#: rc.cpp:508
+msgid "Installation"
+msgstr "Telepítés"
+
+#. i18n: file: ui/widgets/errorhandling.ui:46
+#. i18n: ectx: attribute (title), widget (QWidget, tab_2)
+#: rc.cpp:511
+msgid "Initramdisk"
+msgstr "Initramdisk"
+
+#. i18n: file: ui/widgets/errorhandling.ui:61
+#. i18n: ectx: attribute (title), widget (QWidget, tab_3)
+#: rc.cpp:514
+msgid "Grub"
+msgstr "Grub"
+
+#. i18n: file: ui/widgets/errorhandling.ui:76
+#. i18n: ectx: attribute (title), widget (QWidget, tab_4)
+#: rc.cpp:517
+msgid "X.Org"
+msgstr "X.Org"
+
+#. i18n: file: ui/widgets/errorhandling.ui:131
+#. i18n: ectx: property (text), widget (QPushButton, pushButton)
+#: rc.cpp:520
+msgid "Report Bug"
+msgstr "Hiba jelentése"
+
+#. i18n: file: ui/widgets/groupselectionwidget.ui:20
+#. i18n: ectx: property (windowTitle), widget (QWidget, GroupSelectionWidget)
+#: rc.cpp:523
+msgid "Frame"
 msgstr ""
 
-#. i18n: file: ui/widgets/userwidget.ui:46
-#. i18n: ectx: property (text), widget (QLabel, label)
-#: rc.cpp:432
-#, fuzzy
-msgid "Login: "
-msgstr "Bejelentkezés:"
+#. i18n: file: ui/widgets/groupselectionwidget.ui:29
+#. i18n: ectx: property (text), widget (QCheckBox, group)
+#: rc.cpp:526
+msgid "group"
+msgstr ""
 
-#. i18n: file: ui/widgets/userwidget.ui:56
-#. i18n: ectx: property (text), widget (QLabel, label_2)
-#: rc.cpp:435
-#, fuzzy
-msgid "Password: "
-msgstr "Jelszó:"
+#. i18n: file: ui/widgets/groupselectionwidget.ui:36
+#. i18n: ectx: property (text), widget (QLabel, description)
+#: rc.cpp:529
+msgid "description"
+msgstr ""
 
-#. i18n: file: ui/widgets/userwidget.ui:94
+#. i18n: file: ui/widgets/userwidget.ui:74
 #. i18n: ectx: property (toolTip), widget (QPushButton, userDetails)
-#: rc.cpp:438
+#: rc.cpp:532
 msgid "Include more information about this user."
-msgstr ""
+msgstr "Adjon meg több információt ehhez a felhasználóhoz."
 
-#. i18n: file: ui/widgets/userwidget.ui:124
+#. i18n: file: ui/widgets/userwidget.ui:132
+#. i18n: ectx: property (toolTip), widget (QPushButton, removeUser)
+#: rc.cpp:535
+msgid "Remove this user."
+msgstr "Felhasználó törlése."
+
+#. i18n: file: ui/widgets/userwidget.ui:151
+#. i18n: ectx: property (format), widget (QProgressBar, passStrengthProgBar)
+#: rc.cpp:539
+#, no-c-format
+msgid "password strength: %p%"
+msgstr "jelszó erőssége: %p%"
+
+#. i18n: file: ui/widgets/userwidget.ui:158
+#. i18n: ectx: property (text), widget (QLabel, label_2)
+#: rc.cpp:542
+msgid "Password: "
+msgstr "Jelszó: "
+
+#. i18n: file: ui/widgets/userwidget.ui:216
 #. i18n: ectx: property (text), widget (QLabel, label_3)
-#: rc.cpp:441
+#: rc.cpp:545
 msgid "Confirm Password:"
 msgstr "Jelszó megerősítése:"
 
-#. i18n: file: ui/widgets/userwidget.ui:146
-#. i18n: ectx: property (toolTip), widget (QPushButton, removeUser)
-#: rc.cpp:444
-msgid "Remove this user."
-msgstr ""
+#. i18n: file: ui/widgets/userwidget.ui:243
+#. i18n: ectx: property (text), widget (QLabel, label)
+#: rc.cpp:548
+msgid "User name"
+msgstr "Felhasználó név"
 
-#. i18n: file: ui/widgets/userwidget.ui:264
+#. i18n: file: ui/widgets/userwidget.ui:259
+#. i18n: ectx: property (toolTip), widget (QLineEdit, loginLine)
+#: rc.cpp:551
+msgid ""
+"<html><head/><body><p>The user name may consist of a lowercase character or "
+"\"_\", followed by up to 31 lowercase characters, digits or \"_\" and "
+"\"-\".</p></body></html>"
+msgstr "<html><head/><body><p>A felhasználónév tartalmazhat kisbetűket vagy a \"_\" karaktert, amit 31 kisbetű, számok vagy a \"_\" és \"-\" karakterek követnek.</p> </body></html>"
+
+#. i18n: file: ui/widgets/userwidget.ui:301
 #. i18n: ectx: property (text), widget (QLabel, label_4)
-#: rc.cpp:447
-#, fuzzy
+#: rc.cpp:554
 msgid "Name: "
-msgstr "Név:"
-
-#. i18n: file: ui/widgets/userwidget.ui:307
-#. i18n: ectx: property (text), widget (QCheckBox, autoLoginCheckBox)
-#: rc.cpp:450
-msgid "Login Automatically"
-msgstr ""
+msgstr "Név: "
 
 #. i18n: file: ui/widgets/userwidget.ui:344
+#. i18n: ectx: property (text), widget (QCheckBox, autoLoginCheckBox)
+#: rc.cpp:557
+msgid "Login Automatically"
+msgstr "Automatikus bejelentkezés"
+
+#. i18n: file: ui/widgets/userwidget.ui:381
 #. i18n: ectx: property (text), widget (QCheckBox, rootUsesUserPwCheckBox)
-#: rc.cpp:453
+#: rc.cpp:560
 msgid ""
-"Use this password as \n"
+"Select to use the above password as \n"
 "the Administrator password"
-msgstr ""
+msgstr "A fenti jelszó használata\nadminisztrátori jelszóként."
 
-#. i18n: file: ui/widgets/userwidget.ui:396
+#. i18n: file: ui/widgets/userwidget.ui:433
 #. i18n: ectx: property (text), widget (QLabel, label_5)
-#: rc.cpp:457
-#, fuzzy
+#: rc.cpp:564
 msgid "Root Password:  "
-msgstr "Rendszergazda jelszó"
+msgstr "Root jelszó: "
 
-#. i18n: file: ui/widgets/userwidget.ui:406
+#. i18n: file: ui/widgets/userwidget.ui:443
 #. i18n: ectx: property (text), widget (QLabel, label_6)
-#: rc.cpp:460
-#, fuzzy
+#: rc.cpp:567
 msgid "Confirm Root Password:  "
-msgstr "Jelszó megerősítése:"
+msgstr "Rott jelszó megerősítése: "
 
-#: rc.cpp:461
+#: rc.cpp:568
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Laszlo Papp"
+msgstr "Norbert Evenich"
 
-#: rc.cpp:462
+#: rc.cpp:569
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "djszapi@archlinux.us"
-
-#, fuzzy
-#~ msgid "installed"
-#~ msgstr "Telepítés ide:"
-
-#, fuzzy
-#~ msgid "Install Packaged Software"
-#~ msgstr "PostInstall backend és műalkotás"
-
-#, fuzzy
-#~ msgid "Install Packages"
-#~ msgstr "PostInstall backend és műalkotás"
-
-#, fuzzy
-#~ msgid "Install"
-#~ msgstr "Telepítés ide:"
-
-#~ msgid "Delete"
-#~ msgstr "Törlés"
+msgstr "evenorbert@gmail.com"

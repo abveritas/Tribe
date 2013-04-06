@@ -6,21 +6,14 @@ job_init()
 	# GLOBAL JOB DEPENDENCIES
 	###########################################################################
 	if [ -z "${target_root}" ] ; then
-		msg "ERROR: You need to give me a partition for root with --target-root"
-		msg "Error detected. Stopping."
-		exit 0
-	fi
-
-	if [ -z "${target_root_fs}" ] ; then
-		msg "ERROR: You need to give me a fs for root with --target-root-fs"
-		msg "Error detected. Stopping."
-		echo " "
+		msg "ERROR: You need to give a partition for root with --target-root"
+		msg "Stopping."
 		exit 0
 	fi
 
 	if [ -z "${mountpoint}" ] ; then
-		msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint"
-		msg "Error detected. Stopping."
+		msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint"
+		msg "Stopping."
 		echo " "
 		exit 0
 	fi
@@ -30,40 +23,40 @@ job_init()
 	###########################################################################
 	if [ -z "${use_boot}" ] ; then
 		use_boot=no
-		msg "not using separate boot partition, skipping"
+		msg "not using separate boot partition"
 	fi
 	if [ -z "${use_home}" ] ; then
 		use_home=no
-		msg "not using separate home partition, skipping"
+		msg "not using separate home partition"
 	fi
 	if [ -z "${use_opt}" ] ; then
 		use_opt=no
-		msg "not using separate opt partition, skipping"
+		msg "not using separate opt partition"
 	fi
 	if [ -z "${use_tmp}" ] ; then
 		use_tmp=no
-		msg "not using separate tmp partition, skipping"
+		msg "not using separate tmp partition"
 	fi
 	if [ -z "${use_usr}" ] ; then
 		use_usr=no
-		msg "not using separate usr partition, skipping"
+		msg "not using separate usr partition"
 	fi
 	if [ -z "${use_var}" ] ; then
 		use_var=no
-		msg "not using separate var partition, skipping"
+		msg "not using separate var partition"
 	fi
 
 	if [ "$use_boot" = "yes" ] ; then
 		msg "using separate boot partition"
 		if [ -z "${target_boot}" ] ; then
 			msg "ERROR: You need to give me a partition for boot with --target-boot"        
-			msg "Error detected. Stopping."
+			msg "Stopping."
 			echo " "
 			exit 0
 		fi
 		if [ -z "${target_boot_fs}" ] ; then
 			msg "ERROR: You need to give me a fs for boot with --target-boot-fs"    
-			msg "Error detected. Stopping."
+			msg "Stopping."
 			echo " "
 			exit 0
 		fi
@@ -94,14 +87,14 @@ job_init()
 	###########################################################################
 	if [ "$job" = "setup-sudoers" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
 		if [ -z "${user_name}" ] ; then
-			msg "ERROR: You need to give me a username for this job with  --user-name "     
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a username for this job with  --user-name "     
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -109,8 +102,8 @@ job_init()
 
 	if [ "$job" = "basic-setup" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -118,8 +111,8 @@ job_init()
 
 	if [ "$job" = "remove-livepkgs" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -127,8 +120,8 @@ job_init()
 
 	if [ "$job" = "install-pkgs" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -136,8 +129,8 @@ job_init()
 
 	if [ "$job" = "configure-hardware" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -145,8 +138,8 @@ job_init()
 
 	if [ "$job" = "copy-xorgconf" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -155,36 +148,30 @@ job_init()
 	if [ "$job" = "create-fstab" ] ; then
 
 		if [ -z "${target_root}" ] ; then
-			msg "ERROR: You need to give me a partition for root with --target-root "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a partition for root with --target-root "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
 
-		if [ -z "${target_root_fs}" ] ; then
-			msg "ERROR: You need to give me a fs for root with --target-root-fs "
-			msg "Error detected. Stopping. "
-			echo " "
-			exit 0
-		fi
 
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
 
 		if [ "$use_boot" = "yes" ] ; then
 			if [ -z "${target_boot}" ] ; then
-				msg "ERROR: You need to give me a partition for boot with --target-boot "       
-				msg "Error detected. Stopping. "
+				msg "ERROR: You need to give a partition for boot with --target-boot "       
+				msg "Stopping. "
 				echo " "
 				exit 0
 			fi
 			if [ -z "${target_boot_fs}" ] ; then
-				msg "ERROR: You need to give me a fs for boot with --target-boot-fs "   
-				msg "Error detected. Stopping. "
+				msg "ERROR: You need to give a fs for boot with --target-boot-fs "   						
+				msg "Stopping. "
 				echo " "
 				exit 0
 			fi
@@ -193,8 +180,8 @@ job_init()
 
 	if [ "$job" = "create-initrd" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
@@ -202,14 +189,14 @@ job_init()
 
 	if [ "$job" = "install-grub2" ] ; then
 		if [ -z "${mountpoint}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the root partition with --mountpoint "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the root partition with --mountpoint "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi
 		if [ -z "${target_boot}" ] ; then
-			msg "ERROR: You need to give me a mountpoint for the boot partition with --target-boot "
-			msg "Error detected. Stopping. "
+			msg "ERROR: You need to give a mountpoint for the boot partition with --target-boot "
+			msg "Stopping. "
 			echo " "
 			exit 0
 		fi

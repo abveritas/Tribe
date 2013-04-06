@@ -59,7 +59,6 @@ InstallationHandler *InstallationHandler::instance()
 
 InstallationHandler::InstallationHandler(QObject *parent)
         : QObject(parent),
-          m_doc(false),
           m_configurePacman(true)
 {
     Q_ASSERT(!s_globalInstallationHandler->q);
@@ -98,6 +97,14 @@ void InstallationHandler::init()
 
     m_minSize *= 4;
     m_minSize += 500;
+
+
+    // initialize m_process
+    m_process = new QProcess(this);
+    QProcessEnvironment env;
+    env.insert("LC_ALL", "C");
+    m_process->setProcessEnvironment(env);
+    m_process->setProcessChannelMode(QProcess::MergedChannels);
 }
 
 void InstallationHandler::setHomeBehaviour(HomeAction act)
@@ -146,7 +153,6 @@ void InstallationHandler::handleProgress(CurrentAction act, int percentage)
         total = (percentage * 10) / 100;
         break;
     case InstallationHandler::SystemInstallation:
-        emit streamLabel(i18n("Installing the system ..."));
         total = ( (percentage * 70) / 100 ) + 10;
         break;
     case InstallationHandler::PostInstall:
@@ -187,17 +193,36 @@ void InstallationHandler::copyFiles()
     QProcess::execute("killall pacman");
     QProcess::execute("/bin/rm -f /var/lib/pacman/db.lck");
 
-    QString unsquashfsCommand = "unsquashfs -f -d " + QString(INSTALLATION_TARGET) + " " + QString(BOOTMNT_POINT) + "/root-image.sqfs";
+    switch (m_installationType) {
+    case InstallationHandler::Iso: {
+        connect(m_process, SIGNAL(readyRead()), SLOT(parseUnsquashfsOutput()));
+        connect(m_process, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(jobDone(int)));
 
-    m_process = new QProcess(this);
-    m_process->setProcessChannelMode(QProcess::MergedChannels);
+        qDebug() << "Installing (sqfs decompression) started...";
 
-    connect(m_process, SIGNAL(readyRead()), SLOT(parseUnsquashfsOutput()));
-    connect(m_process, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(jobDone(int)));
+        QStringList arguments;
+        arguments << "-f" << "-d" << INSTALLATION_TARGET << QString("%1/root-image.sqfs").arg(BOOTMNT_POINT);
 
-    qDebug() << "Installing (sqfs decompression) started...";
+        emit streamLabel(i18n("Installing the system ..."));
+        m_process->start("unsquashfs", arguments);
+        break;
+    }
+    case InstallationHandler::NetInst: {
+        connect(m_process, SIGNAL(readyRead()), SLOT(parsePacmanOutput()));
+        connect(m_process, SIGNAL(finished(int, QProcess::ExitStatus)), SLOT(jobDone(int)));
+        qDebug() << "Installing (pacman netinst) started...";
 
-    m_process->start(unsquashfsCommand);
+        QString command = QString("%1/netinstall.sh").arg(SCRIPTS_INSTALL_PATH);
+        QStringList arguments;
+        arguments << INSTALLATION_TARGET << m_packages;
+
+        m_process->start(command, arguments);
+        break;
+    }
+    default:
+        break;
+    }
+
 }
 
 void InstallationHandler::jobDone(int result)
@@ -205,6 +230,7 @@ void InstallationHandler::jobDone(int result)
     m_process->deleteLater();
 
     if (result) {
+        qDebug() << m_process->readAll();
         emit errorInstalling(i18n("Error copying files"));
         return;
     } else {
@@ -232,6 +258,61 @@ void InstallationHandler::parseUnsquashfsOutput()
     }
 }
 
+void InstallationHandler::parsePacmanOutput()
+{
+    static int totalPackages = -1;
+    static int downloadCnt = 0;
+    static int installCnt = 0;
+    static QString currentPackage;
+
+    QStringList outlist;
+    while (m_process->canReadLine()) {
+        QString out = m_process->readLine(2048).trimmed();
+        qDebug() << out;
+
+        if (out.startsWith("NETINST")) {
+            QString msg = out.mid(7).trimmed();
+            if (msg.contains("start")) {
+                emit streamLabel(i18n("Starting Netinstall..."));
+            } else if (msg.contains("install")) {
+                emit streamLabel(i18n("Installing Packages..."));
+            }
+        } else if (out.startsWith("Targets")) {
+            int start = 9;
+            int end = out.indexOf(')', start);
+            // search for number starting at offset 8
+            if (end != -1) {
+                totalPackages = out.mid(start, end - start).toInt();
+                emit streamLabel(i18n("Downloading Packages..."));
+            }
+        } else {
+            QRegExp rx("(downloading|installing) (.*)\\.\\.\\.");
+            if (rx.indexIn(out) != -1) {
+                // only take action if it is the first time we see the package
+                if (currentPackage != rx.cap(2)) {
+                    currentPackage = rx.cap(2);
+
+                    if (rx.cap(1) == "downloading") {
+                        if (totalPackages > 0) {
+                            ++downloadCnt;
+                        }
+                    } else {
+                        ++installCnt;
+                    }
+                }
+            }
+        }
+    }
+
+
+    if (totalPackages > 0) {
+        double downloadWeight = 60;
+        double installWeight = 40;
+        int percentage = (downloadCnt * downloadWeight) / totalPackages + (installCnt * installWeight) / totalPackages;
+        handleProgress(currAction, percentage);
+    }
+}
+
 void InstallationHandler::reconnectJobSlot()
 {
     if (m_process) {
@@ -255,8 +336,8 @@ void InstallationHandler::populateCommandParameters()
 {
     qDebug() << " :: System root partition: " << trimDevice(m_mount["/"]);
 
-    m_postcommand = QString("--target-root %1 --target-root-fs %2 --mountpoint %3 ")
-                    .arg(trimDevice(m_mount["/"])).arg(m_mount["/"]->fileSystem().name()).arg(INSTALLATION_TARGET);
+    m_postcommand = QString("--target-root %1 --mountpoint %2 ")
+                    .arg(trimDevice(m_mount["/"])).arg(INSTALLATION_TARGET);
 
     if (m_mount.contains("swap")) {
         m_postcommand.append(QString("--use-swap yes --target-swap %1 ").arg(trimDevice(m_mount["swap"])));
@@ -299,6 +380,14 @@ void InstallationHandler::populateCommandParameters()
         m_postcommand.append("--use-var no ");
     }
 
+    if (!m_kblayout.isEmpty()) {
+        m_postcommand.append(QString("--kblayout %1 ").arg(m_kblayout));
+    }
+
+    if (!m_kbvariant.isEmpty()) {
+        m_postcommand.append(QString("--kbvariant %1 ").arg(m_kbvariant));
+    }
+
     if (!m_hostname.isEmpty()) {
         m_postcommand.append(QString("--hostname %1 ").arg(m_hostname));
     }
@@ -315,12 +404,12 @@ void InstallationHandler::populateCommandParameters()
         m_postcommand.append(QString("--kdelang %1 ").arg(m_KDELangPack));
     }
 
-    if (m_doc) {
-        m_postcommand.append("--download-doc no ");
-    }
-
     if (m_configurePacman) {
         m_postcommand.append("--configure-pacman yes ");
+    }
+
+    if (m_installationType == NetInst) {
+        m_postcommand.append("--netinst yes ");
     }
 }
 
@@ -371,10 +460,9 @@ void InstallationHandler::postInstall()
                 qDebug() << " :: add mountpoint for: " << i.key();
                 QString command = QString("sh " + QString(SCRIPTS_INSTALL_PATH) +
                                           "/postinstall.sh --job add-extra-mountpoint --extra-mountpoint %1 "
-                                          "--extra-mountpoint-target %2 --extra-mountpoint-fs %3 %4")
+                                          "--extra-mountpoint-target %2 %3")
                                           .arg(i.key())
                                           .arg(trimDevice(i.value()))
-                                          .arg(i.value()->fileSystem().name())
                                           .arg(m_postcommand);
 
                 QProcess *process = new QProcess(this);
@@ -447,12 +535,12 @@ void InstallationHandler::postInstallDone(int eC, QProcess::ExitStatus eS)
             m_postlabel = i18n("Downloading and installing localization packages...");
             percentage = 5;
         } else if (m_postjob == "download-l10n") {
-            m_postjob = "create-fstab"; 
-            m_postlabel = i18n("Creating fstab..."); 
-            percentage = 6; 
+            m_postjob = "create-fstab";
+            m_postlabel = i18n("Creating fstab...");
+            percentage = 6;
         } else if (m_postjob == "create-fstab") {
             m_postjob = "add-extra-mountpoint";
-            m_postlabel = i18n("Adding extra mountpoints..."); 
+            m_postlabel = i18n("Adding extra mountpoints...");
             percentage = 7;
         } else if (m_postjob == "add-extra-mountpoint") {
             m_postjob = "setup-hardware";
@@ -643,7 +731,7 @@ void InstallationHandler::installBootloader(int action, const QString &device)
 
 void InstallationHandler::setUpUsers(QStringList users)
 {
-qDebug() << "::::::: setUpUsers() \n" << users << "\n\n";
+qDebug() << ":: Running setUpUsers() \n" << users << "\n\n";
     QString command;
 
     int current = 0;
@@ -690,25 +778,25 @@ qDebug() << " :: running useradd command: " << command;
 qDebug() << " :: user \'" + user + "\' created";
 
         // set kdm/user avatar
-        command = QString("bash -c \"mkdir -p " + 
-                          QString(INSTALLATION_TARGET) + 
+        command = QString("bash -c \"mkdir -p " +
+                          QString(INSTALLATION_TARGET) +
                           "/usr/share/apps/kdm/faces > /dev/null 2>&1\"");
         QProcess::execute(command);
-        command = QString("bash -c \"cp " + userAvatarList().at(current) + " " + 
+        command = QString("bash -c \"cp " + userAvatarList().at(current) + " " +
                           QString(INSTALLATION_TARGET) + "/usr/share/apps/kdm/faces/" +
                           user + ".face.icon > /dev/null 2>&1\"");
         QProcess::execute(command);
-        command = QString("bash -c \"cp " + userAvatarList().at(current) + " " + 
+        command = QString("bash -c \"cp " + userAvatarList().at(current) + " " +
                           QString(INSTALLATION_TARGET) + "/home/" +
                           user + "/.face.icon > /dev/null 2>&1\"");
         QProcess::execute(command);
 
         // set autologin
         if (m_userAutoLoginList.at(current) == "1") {
-            command = QString("bash -c \"sed -i -e \'s/#AutoLoginEnable=true/AutoLoginEnable=true/\' " + 
+            command = QString("bash -c \"sed -i -e \'s/#AutoLoginEnable=true/AutoLoginEnable=true/\' " +
                               QString(INSTALLATION_TARGET) + "/usr/share/config/kdm/kdmrc\"");
             QProcess::execute(command);
-            command = QString("bash -c \"sed -i -e \'s/#AutoLoginUser=fred/AutoLoginUser=" + user + "/\' " + 
+            command = QString("bash -c \"sed -i -e \'s/#AutoLoginUser=fred/AutoLoginUser=" + user + "/\' " +
                               QString(INSTALLATION_TARGET) + "/usr/share/config/kdm/kdmrc\"");
             QProcess::execute(command);
         }
@@ -746,7 +834,7 @@ qDebug() << " :: live configuration copied to the user's home";
                           " --user-name " +
                           user);
 
-qDebug() << ":: user configuration complete";
+qDebug() << " :: user configuration complete";
 
         QProcess::execute("sh " +
                           QString(SCRIPTS_INSTALL_PATH) +
@@ -776,7 +864,7 @@ void InstallationHandler::streamPassword()
 {
     m_userProcess->write(QString(userPasswordList().at(m_passwdCount)).toUtf8().data());
     m_userProcess->write("\n");
-    
+
     sleep(3);
 }
 
@@ -784,7 +872,7 @@ void InstallationHandler::streamRootPassword()
 {
     m_rootUserProcess->write(QString(userPasswordList().last()).toUtf8().data());
     m_rootUserProcess->write("\n");
-    
+
     sleep(3);
 }
 
@@ -813,28 +901,33 @@ void InstallationHandler::killProcesses()
 {
     if (m_process) {
         m_process->terminate();
-        m_process->kill();
+        m_process->waitForFinished(100);
+        if (m_process->state() != QProcess::NotRunning) {
+            m_process->kill();
+        }
+        m_process->waitForFinished(100);
     }
 }
 
 void InstallationHandler::cleanup()
 {
-qDebug() << " :: copying installation logs to target /var/log";
-
     if (QFile::exists("/tmp/installation.log")) {
+        qDebug() << " :: copying installation logs to target /var/log";
         QFile::copy("/tmp/installation.log", QString(INSTALLATION_TARGET) + "/var/log/installation.log");
     }
 
     if (QFile::exists("/tmp/initramfs.log")) {
+        qDebug() << " :: copying initramfs logs to target /var/log";
         QFile::copy("/tmp/initramfs.log", QString(INSTALLATION_TARGET) + "/var/log/installation-initramdisk.log");
     }
 
     if (QFile::exists("/tmp/grub2.log")) {
+        qDebug() << " :: copying grub2 logs to target /var/log";
         QFile::copy("/tmp/grub2.log", QString(INSTALLATION_TARGET) + "/var/log/installation-grub2.log");
     }
 
-    unmountAll();
     killProcesses();
+    unmountAll();
 }
 
 #include "installationhandler.moc"

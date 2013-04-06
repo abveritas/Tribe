@@ -88,7 +88,9 @@ void LicensePage::enableNext()
 void LicensePage::setUpLicense()
 {
     if (m_iterator >= m_licenses.keys().count()) {
-        qDebug() << "The following packages will be removed:" << m_notAccepted;
+        if(!m_notAccepted.isEmpty()) {
+            qDebug() << "The following packages will be removed:" << m_notAccepted;
+	}
         m_handler->setRemoveLicenses(m_notAccepted);
         emit goToNextStep();
         return;

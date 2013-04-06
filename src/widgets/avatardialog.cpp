@@ -16,6 +16,7 @@
 #include <KLocalizedString>
 
 #include "avatardialog.h"
+#include "config-tribe.h"
 
 
 AvatarDialog::AvatarDialog(QWidget* parent)
@@ -38,9 +39,10 @@ AvatarDialog::AvatarDialog(QWidget* parent)
 
 void AvatarDialog::populateList()
 {
-    QDir d("/usr/share/tribe/avatars");
+    QDir d(QString(TRIBE_INSTALL_PATH) + "/share/tribe/avatars" );
     foreach (QString file, d.entryList(QDir::AllEntries | QDir::NoDotAndDotDot)) {
         QListWidgetItem *item = new QListWidgetItem(ui.avatarList);
+        item->setFlags(item->flags() ^ Qt::ItemIsDragEnabled ^ Qt::ItemIsDropEnabled); // disable drag and drop support
         item->setIcon(KIcon(d.path() + "/" + file));
         item->setData(58, d.path() + "/" + file);
         item->setText("");

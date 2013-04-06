@@ -14,6 +14,7 @@ Base widget
 }
 
 
+
 /*
 Left sidebar
 */
@@ -115,7 +116,6 @@ QPushButton::pressed {
         font: bold 12px;
         icon-size: 20px;
 }
-
 
 /*
 RadioButtons
@@ -390,33 +390,6 @@ QTreeView {
 }
 
 /*
-QTreeView::branch:has-siblings:!adjoins-item {
-        border-image: url(:/Images/images/treeview-vline.png) 0;
-}
-
-QTreeView::branch:has-siblings:adjoins-item {
-        border-image: url(:/Images/images/treeview-branch-more.png) 0;
-}
-
-QTreeView::branch:!has-children:!has-siblings:adjoins-item {
-        border-image: url(:/Images/images/treeview-branch-end.png) 0;
-}
-
-QTreeView::branch:has-children:!has-siblings:closed,
-QTreeView::branch:closed:has-children:has-siblings {
-        border-image: none;
-        image: url(:/Images/images/treeview-branch-closed.png);
-}
-
-QTreeView::branch:open:has-children:!has-siblings,
-QTreeView::branch:open:has-children:has-siblings  {
-        border-image: none;
-        image: url(:/Images/images/treeview-branch-open.png);
-}
-*/
-
-
-/*
 QHeaderView
 */
 
@@ -594,3 +567,4 @@ border: 1px solid #000000;
 margin: 0 -8px;
 border-radius: 4px;
 }
+

@@ -1,6 +1,7 @@
 /*
- * Copyright (c) 2008, 2009        Dario Freddi <drf@chakra-project.org>
- *               2010, 2011, 2012  Drake Justice <djustice@chakra-project.com>
+ * Copyright (c) 2008 - 2009  Dario Freddi <drf@chakra-project.org>
+ *               2010 - 2012  Drake Justice <djustice@chakra-project.com>
+ *                      2013  Manuel Tortosa <manutortosa@chakra-project.org>     
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -11,12 +12,72 @@
 
 #include <QDebug>
 #include <QDesktopWidget>
+#include<QRegExpValidator>
 
 #include "avatardialog.h"
 #include "userwidget.h"
-extern "C" {
-  #include <pwquality.h>
+#include <pwquality.h>
+
+UsernameValidator::UsernameValidator(QRegExp exp): QRegExpValidator(exp),  m_badNames()
+{
+  m_badNames 
+    << "root"
+    << "bin"
+    << "daemon"
+    << "mail"
+    << "ftp"
+    << "http"
+    << "nobody"
+    << "dbus"
+    << "avahi"
+    << "usbmux"
+    << "postgres"
+    << "quassel"
+    << "rtkit"
+    << "git"
+    << "polkitd"
+    << "nm-openconnect"
+    << "kdm"
+    << "uuidd"
+    << "ntp"
+    << "mysql"
+    << "clamav"
+    << "postfix"
+    << "lightdm";
 }
+
+
+void UsernameValidator::fixup(QString& input) const
+{
+    input = input.trimmed();
+    input = input.toLower();
+}
+
+QValidator::State UsernameValidator::validate(QString& input, int& pos) const
+{
+    QValidator::State state = QRegExpValidator::validate(input, pos);
+    if (state == QRegExpValidator::Invalid) {
+        QChar lastchar = input.at(pos-1);
+        if (lastchar.isUpper()) {
+            emit invalidSymbolEntered(i18n("Usernames can not contain uppercase letters."));
+        } else if (lastchar.isSpace()) {
+            emit invalidSymbolEntered(i18n("Usernames can not contain spaces."));
+        } else {
+            emit invalidSymbolEntered(i18n("%1 is not a valid character", lastchar));
+        }
+        fixup(input);
+        state = QRegExpValidator::validate(input, pos);
+    }
+    if (m_badNames.contains(input)) {
+      emit invalidSymbolEntered(i18n("%1 is already used by a system user. Please choose another name.", input));
+      return QValidator::Intermediate;
+    }
+    if (state == QValidator::Acceptable) {
+      emit textIsValidAgain();
+    }
+    return state;
+}
+
 
 
 UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
@@ -36,7 +97,7 @@ UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
     ui.avatar->setIconSize(QSize(48, 48));
     ui.avatar->setIcon(QPixmap(":/Images/images/own.png"));
 
-    m_avatarDialog = new AvatarDialog(0);
+    m_avatarDialog = new AvatarDialog(parent->parentWidget());
 
     if (number == 0) {
         autoLogin = true;
@@ -49,16 +110,28 @@ UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
         ui.rootUsesUserPwCheckBox->setVisible(false);
         ui.extWidget->hide();
         ui.rootPwWidget->hide();
-
     }
 
     passwordsMatch = true;
+    //don't use character classes, Qt is unicode aware, but useradd is not
+    QRegExp validUsername("[a-z_][a-z0-9\\-_]{0,31}");  //this is the regular expression which is accepted by the useradd command
+    UsernameValidator *m_validator = new UsernameValidator(validUsername);
     loginLine = ui.loginLine;
+    loginLine->setValidator(m_validator);
+    
+    m_messageWidget = new KMessageWidget(this);
+    m_messageWidget->hide();
+    m_messageWidget->setMessageType(KMessageWidget::Warning);
+    m_messageWidget->setWordWrap(true);
+    ui.userNameLayout->insertWidget(0, m_messageWidget);
 
     connect(ui.loginLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
     connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
     connect(ui.passLine, SIGNAL(textChanged(QString)), this, SLOT(updatePasswordStrengthBar(QString)));
     connect(ui.confirmPassLine, SIGNAL(textChanged(QString)), this, SLOT(testFields()));
+    
+    connect(m_validator, SIGNAL(invalidSymbolEntered(QString)), this, SLOT(showUsernameWarning(QString)));
+    connect(m_validator, SIGNAL(textIsValidAgain()), this, SLOT(hideUsernameWarning()));
 
     connect(ui.userDetails, SIGNAL(clicked(bool)), this, SLOT(showDetails()));
     connect(ui.removeUser, SIGNAL(clicked(bool)), this, SLOT(emitRemove()));
@@ -79,14 +152,12 @@ UserWidget::UserWidget(int a_userNumber, QWidget* parent): QWidget(parent)
 
 UserWidget::~UserWidget()
 {
-
+  
 }
 
 void UserWidget::setAvatar(const QString& avatar_)
 {
-    if (avatar_ == "z") {
-
-    } else {
+    if (avatar_ != "z") {
         ui.avatar->setIcon(KIcon(avatar_));
         avatar = avatar_;
     }
@@ -109,43 +180,39 @@ void UserWidget::emitRemove()
 
 void UserWidget::testFields()
 {
-    if ((ui.passLine->text() == ui.confirmPassLine->text()) &&
-        (!ui.passLine->text().isEmpty())) {
-        ui.confirmPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
-        password = ui.passLine->text();
-        passwordsMatch = true;
+    // user password
+    if ((ui.passLine->text().isEmpty()) && (ui.confirmPassLine->text().isEmpty())) {
+        passwordsEmpty = true;
     } else {
-        ui.confirmPwCheck->setPixmap(QPixmap());
-        passwordsMatch = false;
+        if ((ui.passLine->text() == ui.confirmPassLine->text())) {
+            ui.confirmPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
+            password = ui.passLine->text();
+            passwordsMatch = true;
+        } else {
+            ui.confirmPwCheck->setPixmap(QPixmap());
+            passwordsMatch = false;
+        }
+        passwordsEmpty = false;
     }
-
-    if ((ui.rootPassLine->text() == ui.confirmRootPassLine->text()) &&
-        (!ui.rootPassLine->text().isEmpty())) {
-        ui.confirmRootPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
-        rootPassword = ui.rootPassLine->text();
-        rootPasswordsMatch = true;
+    
+    // root password
+    if (ui.rootPassLine->text().isEmpty() && ui.confirmRootPassLine->text().isEmpty()) {
+        rootPasswordsEmpty = true;
     } else {
-        ui.confirmRootPwCheck->setPixmap(QPixmap());
-        rootPasswordsMatch = false;
-    }
-
-    QRegExp r("\\D\\w{0,45}");
-    QRegExp s("\\D\\w{0,45}[ ]");
-
-    if (r.exactMatch(ui.loginLine->text())) {
-        ui.loginLine->setText(ui.loginLine->text().toLower());
-    } else if (s.exactMatch(ui.loginLine->text())) {
-        ui.loginLine->setText(ui.loginLine->text().left(ui.loginLine->text().length() - 1));
-    } else {
-        ui.loginLine->setText("");
+        if ((ui.rootPassLine->text() == ui.confirmRootPassLine->text())) {
+            ui.confirmRootPwCheck->setPixmap(QPixmap(":Images/images/green-check.png"));
+            rootPassword = ui.rootPassLine->text();
+            rootPasswordsMatch = true;
+        } else {
+            ui.confirmRootPwCheck->setPixmap(QPixmap());
+            rootPasswordsMatch = false;
+        }
+        rootPasswordsEmpty = false;
     }
 
     login = ui.loginLine->text();
     name = ui.nameLine->text();
     autoLogin = ui.autoLoginCheckBox->isChecked();
-    if (!useRootPw) {
-        rootPasswordsMatch = true;
-    }
 }
 
 void UserWidget::avatarClicked()
@@ -156,22 +223,52 @@ void UserWidget::avatarClicked()
 
 void UserWidget::updatePasswordStrengthBar(const QString& newpass_)
 {
-  // This code uses libpwquality to check the password's strength each time it changes and uses a QProgressBar to indicate how strong it is
-  // TODO: Maybe abstract libpwquality away, writing a wrapper with a Qtish API?
-  QByteArray byteArray = newpass_.toUtf8();
-  const char* cPassString = byteArray.constData();
-  void* auxerror;
-  int pwstrength = pwquality_check(pwquality_default_settings(), cPassString, NULL, NULL, &auxerror);
-  if (pwstrength < 0) {
-    const char* cAuxErrorInfo =  pwquality_strerror(NULL, 0, pwstrength, auxerror);
-    ui.passStrengthProgBar->reset();
-    ui.pwERRORLabel->setText(QString::fromUtf8(cAuxErrorInfo));
-    ui.pwERRORLabel->show();
-  } else {
-    ui.passStrengthProgBar->setValue(pwstrength);
-    ui.pwERRORLabel->hide();
-  }
+    // This code uses libpwquality to check the password's strength each time it changes and uses a QProgressBar to indicate how strong it is
+    // TODO: Maybe abstract libpwquality away, writing a wrapper with a Qtish API?
+    QByteArray byteArray = newpass_.toUtf8();
+    const char* cPassString = byteArray.constData();
+    void* auxerror;
+    int pwstrength = pwquality_check(pwquality_default_settings(), cPassString, NULL, NULL, &auxerror);
+    if (pwstrength < 0) {
+        const char* cAuxErrorInfo =  pwquality_strerror(NULL, 0, pwstrength, auxerror);
+        ui.passStrengthProgBar->reset();
+        ui.pwERRORLabel->setText(QString::fromUtf8(cAuxErrorInfo));
+        ui.pwERRORLabel->show();
+    } else {
+        ui.passStrengthProgBar->setValue(pwstrength);
+        ui.pwERRORLabel->hide();
+    }
 }
+
+bool UserWidget::isUserNameValid()
+{
+    int i = 0;
+    QString s = loginLine->text();
+    if (loginLine->validator()->validate(s, i) == QRegExpValidator::Acceptable) {
+        hideUsernameWarning();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+void UserWidget::showUsernameWarning(const QString& warning_)
+{
+    if (m_messageWidget->isVisible()) {
+        m_messageWidget->hide(); //else the GUI will look awkward when the text changes
+    }
+    m_messageWidget->setText(warning_);
+    m_messageWidget->animatedShow();
+}
+
+void UserWidget::hideUsernameWarning()
+{
+    if(m_messageWidget->isVisible()) {
+        m_messageWidget->animatedHide();
+    }
+}
+
 
 
 void UserWidget::autoLoginToggled()

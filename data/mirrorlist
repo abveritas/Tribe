@@ -1,0 +1,65 @@
+#
+# Chakra Linux repository mirrorlist
+#
+
+#Australia
+Server = http://mirror.aarnet.edu.au/pub/chakra/$repo/x86_64
+Server = ftp://mirror.aarnet.edu.au/pub/chakra/$repo/x86_64
+
+# Brazil
+#Server = http://chakra.c3sl.ufpr.br/$repo/x86_64
+#Server = ftp://chakra.c3sl.ufpr.br/chakra/$repo/x86_64
+#Server = http://chakra.fis.unb.br/$repo/x86_64
+#Server = ftp://chakra.fis.unb.br/chakra/$repo/x86_64
+
+# China
+#Server = http://oss.ustc.edu.cn/kdemod/$repo/x86_64
+#Server = http://debian.cn99.com/kdemod/$repo/x86_64
+#Server = http://mirrors.163.com/kdemod/$repo/x86_64
+
+# Czech Republic
+#Server = http://ftp.sh.cvut.cz/MIRRORS/chakra/$repo/x86_64
+#Server = ftp://ftp.sh.cvut.cz/MIRRORS/chakra/$repo/x86_64
+
+# France
+#Server = http://www-ftp.lip6.fr/pub/linux/distributions/chakra/$repo/x86_64
+#Server = ftp://ftp.lip6.fr/pub/linux/distributions/chakra/$repo/x86_64
+#Server = http://ftp.ciril.fr/pub/linux/chakra/$repo/x86_64
+#Server = ftp://ftp.ciril.fr/pub/linux/chakra/$repo/x86_64
+
+# Germany
+Server = http://chakra-project.org/repo/$repo/x86_64
+#Server = http://mirror.selfnet.de/kdemod/$repo/x86_64
+#Server = ftp://mirror.selfnet.de/kdemod/$repo/x86_64
+#Server = http://mirror.wh-stuttgart.net/mirrors/kdemod/$repo/x86_64
+#Server = http://ftp.halifax.rwth-aachen.de/chakra/$repo/x86_64
+#Server = ftp://ftp.halifax.rwth-aachen.de/chakra/$repo/x86_64
+
+# Greece
+#Server = http://ftp.cc.uoc.gr/mirrors/linux/chakra/$repo/x86_64
+#Server = ftp://ftp.cc.uoc.gr/mirrors/linux/chakra/$repo/x86_64
+#Server = http://ftp.ntua.gr/pub/linux/chakra/$repo/x86_64
+#Server = ftp://ftp.ntua.gr/pub/linux/chakra/$repo/x86_64
+
+# Italy
+#Server =  http://chakra.mirror.garr.it/mirrors/chakra/$repo/x86_64
+
+# Russia
+#Server = http://mirror.tspu.ru/chakra-project/$repo/x86_64
+Server = http://mirror.yandex.ru/mirrors/chakra/$repo/x86_64
+Server = ftp://mirror.yandex.ru/mirrors/chakra/$repo/x86_64
+#Server = http://chakra.softded.ru/chakra/$repo/x86_64
+
+# Switzerland
+#Server = http://archlinux.puzzle.ch/kdemod/$repo/x86_64
+
+#Taiwan
+#Server = http://free.nchc.org.tw/chakra/$repo/x86_64
+#Server = ftp://free.nchc.org.tw/chakra/$repo/x86_64
+
+# United States
+#Server = http://chakra.hostingxtreme.com/$repo/x86_64
+Server = http://mirror.rit.edu/kdemod/$repo/x86_64
+#Server = ftp://mirror.dacentec.com/chakra/$repo/x86_64
+#Server = http://mirror.dacentec.com/chakra/$repo/x86_64
+

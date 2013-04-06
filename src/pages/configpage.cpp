@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2008, 2009  Dario Freddi <drf@chakra-project.org>
  *               2010        Drake Justice <djustice.kde@gmail.com>
+ *               2913        Manuel Tortosa (manutortosa@chakra-project.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -131,11 +132,7 @@ void ConfigPage::createWidget()
 
 void ConfigPage::incomingData(KIO::Job* job, QByteArray data)
 {
-    /*
-     * A harmless warning from GCC is generated here due to the signed/unsigned integer comparison.
-     * The warning is harmless because the integer comparison is an inequality check.
-     */
-    if (ui.progressBar->maximum() != job->totalAmount(KJob::Bytes))
+    if (ui.progressBar->maximum() != qint64(job->totalAmount(KJob::Bytes)))
         ui.progressBar->setMaximum(job->totalAmount(KJob::Bytes));
 
     if (data.isNull()) {
@@ -248,13 +245,13 @@ void ConfigPage::cancelButtonClicked()
 
 void ConfigPage::handleNetworkData(QNetworkReply *networkReply)
 {
-  // no error -> internet access
-  if (!networkReply->error())
-    m_currentOnlineStatus = "Online";
-  else
-    m_currentOnlineStatus = "Offline";
+    // no error -> internet access
+    if (!networkReply->error())
+        m_currentOnlineStatus = "Online";
+    else
+        m_currentOnlineStatus = "Offline";
 
-  networkReply->deleteLater();
+    networkReply->deleteLater();
 }
 
 void ConfigPage::bundlesDownloadButtonClicked()
@@ -323,11 +320,11 @@ void ConfigPage::bundlesDownloadButtonClicked()
         m_currentArch = "i686";
     }
 
-    // call rsync
+    // TODO: use QJSon here instead, that's crap.
     foreach (QString bundle, checkedList) {
         m_process->start("bash -c \"echo $(rsync -avh --list-only chakra@chakra-project.org::chakra/bundles" +
-                        m_currentBranch + "/" + m_currentArch +
-                        "/" + bundle + "*  | cut -d\':\' -f3 | cut -d\' \' -f2)\"");
+                          m_currentBranch + "/" + m_currentArch +
+                         "/" + bundle + "*  | cut -d\':\' -f3 | cut -d\' \' -f2)\"");
         m_process->waitForFinished();
         QString result(m_process->readAll());
         if (result.simplified().trimmed().split("\n").count() > 1) {
@@ -338,7 +335,7 @@ void ConfigPage::bundlesDownloadButtonClicked()
     }
 
     KUrl r(QUrl("http://mirror.rit.edu/kdemod/bundles" + m_currentBranch + "/" +
-                    m_currentArch + "/" + m_incomingList.at(m_incomingIncr)));
+                 m_currentArch + "/" + m_incomingList.at(m_incomingIncr)));
     m_job = KIO::get(r, KIO::Reload, KIO::Overwrite | KIO::HideProgressInfo);
     connect(m_job, SIGNAL(data(KIO::Job*,QByteArray)), this, SLOT(incomingData(KIO::Job*, QByteArray)));
     connect(m_job, SIGNAL(result(KJob*)), this, SLOT(result(KJob*)));
@@ -427,11 +424,6 @@ void ConfigPage::setDownloadBundlesPage()
     }
 }
 
-void ConfigPage::setChangeAppearancePage()
-{
-
-}
-
 void ConfigPage::setBootloaderPage()
 {
     if (ui.stackedWidget->currentIndex() != 4) {
@@ -506,12 +498,12 @@ void ConfigPage::bootloaderInstalled(int exitCode, QProcess::ExitStatus exitStat
     Q_UNUSED(exitStatus)
 
     if (exitCode == 0) {
-        qDebug() << ">> GRUB2: Exitcode " + exitCode;
+        qDebug() << ">> GRUB2: Exitcode " << exitCode;
         qDebug() << ">> GRUB2: Setup finished without any errors...";
         emit deleteProgressWidget();
         emit goToNextStep();
     } else {
-        qDebug() << ">> GRUB2: Exitcode " + exitCode;
+        qDebug() << ">> GRUB2: Exitcode " << exitCode;
         qDebug() << ">> GRUB2: Setup might got wrong...";
         QString completeMessage = i18n("Bootloader-Setup finished with Exitcode: %1\n"
                                        "Some might went wrong. Before reboot it is recommended \n"

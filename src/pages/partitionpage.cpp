@@ -46,6 +46,7 @@ const int SPACING = 3;
 const int MOUNTPOINT_ROLE = Qt::UserRole + 123;
 const int PARTITION_ROLE = Qt::UserRole + 51;
 const int DEVICE_ROLE = Qt::UserRole + 50;
+const int FORMAT_ROLE = Qt::UserRole + 52; 
 
 QStringList s_mountPoints = QStringList() << "None" <<
                                              "/" <<
@@ -71,7 +72,8 @@ bool caseInsensitiveLessThan(const QString& s1, const QString& s2)
 
 PartitionDelegate::PartitionDelegate(QObject * parent) : QStyledItemDelegate(parent),
                                                          m_lockIcon("object-locked"),
-                                                         m_partIcon("partitionmanager")
+                                                         m_partIcon("partitionmanager"),
+                                                         m_formatIcon("configure")   // use a more suiting icon to indicate formatting, ask Malcer about this one
 { }
 
 PartitionDelegate::~PartitionDelegate()
@@ -235,13 +237,19 @@ void PartitionDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opt
     }
 
     const Partition *partition = idx.data(PARTITION_ROLE).value<const Partition*>();
-    if (partition && partition->isMounted()) {
+    if (partition && (partition->isMounted() || idx.data(FORMAT_ROLE).value<bool>())) {
         QRect overlayRect = optV4.rect;
         overlayRect.setSize(iconRect.size() / 1.9);
         overlayRect.moveTo(QPoint(iconRect.right() - overlayRect.width() + 2,
                                   iconRect.bottom() - overlayRect.height() + 2));
 
-        painter->drawPixmap(overlayRect, m_lockIcon.pixmap(overlayRect.size()));
+        // partitions being mounted and being marked for formatting is currentlly mutually exclusive, 
+        // at least the GUI doesn't allow to mark a mounted partition 
+        if (partition->isMounted()) {
+            painter->drawPixmap(overlayRect, m_lockIcon.pixmap(overlayRect.size()));
+        }  else if (idx.data(FORMAT_ROLE).value<bool>()) {
+            painter->drawPixmap(overlayRect, m_formatIcon.pixmap(overlayRect.size()));
+        }
     }
 
     QPen p(Qt::white);
@@ -307,7 +315,7 @@ QSize PartitionDelegate::sizeHint(const QStyleOptionViewItem & option, const QMo
 
 /////////////// tree widget item
 
-class PartitionTreeWidgetItem : public QTreeWidgetItem
+class PartitionTreeWidgetItem : public QTreeWidgetItem 
 {
     Q_DISABLE_COPY(PartitionTreeWidgetItem)
 
@@ -318,6 +326,7 @@ class PartitionTreeWidgetItem : public QTreeWidgetItem
         {
             setData(0, DEVICE_ROLE, QVariant::fromValue(d));
             setData(0, PARTITION_ROLE, QVariant::fromValue(p));
+            setData(0, FORMAT_ROLE, QVariant::fromValue(false));
         }
 
         PartitionTreeWidgetItem(Device* d) : QTreeWidgetItem(),
@@ -357,7 +366,8 @@ PartitionViewWidget::PartitionViewWidget(QWidget* parent)
 }
 
 PartitionViewWidget::~PartitionViewWidget()
-{ }
+{ 
+}
 
 void PartitionViewWidget::stopRetainingPaintEvent()
 {
@@ -485,8 +495,8 @@ void PartitionPage::createWidget()
         if (fs->supportCreate() != FileSystem::cmdSupportNone && 
             fs->type() != FileSystem::Extended &&
             fs->type() != FileSystem::Unformatted) {
-	    if(fs->name()!="ext2")
-	      fsNames.append(fs->name());
+            if(fs->name()!="ext2")
+                fsNames.append(fs->name());
         }
     }
 
@@ -693,6 +703,7 @@ void PartitionPage::formatToggled(bool status)
 
 void PartitionPage::applyFormat()
 {
+    m_ui->treeWidget->selectedItems().first()->setData(0, FORMAT_ROLE, QVariant::fromValue<bool>(true));
     disconnect(m_ui->treeWidget, SIGNAL(itemSelectionChanged()), this, SLOT(cancelFormat()));
     disconnect(m_ui->editPartitionCancelButton, SIGNAL(clicked(bool)), this, SLOT(cancelFormat()));
     disconnect(m_ui->editPartitionOkButton, SIGNAL(clicked(bool)), this, SLOT(applyFormat()));
@@ -714,6 +725,10 @@ void PartitionPage::cancelFormat()
     disconnect(m_ui->editPartitionCancelButton, SIGNAL(clicked(bool)), this, SLOT(cancelFormat()));
     disconnect(m_ui->editPartitionOkButton, SIGNAL(clicked(bool)), this, SLOT(applyFormat()));
 
+    PartitionViewWidget *sender = qobject_cast< PartitionViewWidget* >(QObject::sender());
+    if (!sender) { // This check is necesary, because if the selected item has changed, we would modify the wrong item. Fortunately, we don't have to do anything in this case
+      m_ui->treeWidget->selectedItems().first()->setData(0, FORMAT_ROLE, QVariant::fromValue<bool>(false)); 
+    }
     m_ui->formatButton->setChecked(false);
     const Partition *p = m_ui->treeWidget->selectedItems().first()->data(0, PARTITION_ROLE).value<const Partition*>();
     m_toFormat.remove(p);
@@ -856,11 +871,11 @@ void PartitionPage::aboutToGoToNext()
 
                 PMHandler::instance()->addSectorToMountList(device, partition->firstSector(), text, m_toFormat[partition]);
             } else {
-                if (text == "/") {
+                if (text == "/" || text == "/var") {
                     QString msg;
 
-                    msg.append(i18n("The partition you have chosen to mount as '/' is not marked for formatting. "
-                                    "This might create problems. Do you still want to continue without formating it?"));
+                    msg.append(i18n("The partition you have chosen to mount as '%1' is not marked for formatting. "
+                                    "This might create problems. Do you still want to continue without formating it?", text));
 
                     KDialog *dialog = new KDialog(this, Qt::FramelessWindowHint);
                     bool retbool = true;

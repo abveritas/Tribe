@@ -133,10 +133,10 @@ job_remove_nvidia() {
 				mv ${mountpoint}/etc/X11/xorg.conf.clean ${mountpoint}/etc/X11/xorg.conf
 			fi
 			
-			if [ -e "/tmp/nvidia-96xx" ] ; then
+			if [ -e "/tmp/nvidia-304xx" ] ; then
 			
 				# uninstall driver from target
-				pacman -r ${mountpoint} -Rf --noconfirm nvidia-96xx nvidia-96xx-utils
+				pacman -r ${mountpoint} -Rf --noconfirm nvidia-304xx nvidia-304xx-utils
 
 				# reinstall libgl from overlay
 				pacman -r ${mountpoint} -Udf --noconfirm ${PKG_OVERLAY}/libgl*

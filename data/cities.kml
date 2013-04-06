@@ -152,7 +152,7 @@
   <name>El Aaiun</name>
   <description>Africa/El_Aaiun</description>
   <Point>
-    <coordinates>31.2089,30.0763</coordinates>
+    <coordinates>-13.203333,27.153610</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -656,7 +656,7 @@
   <name>Darwin</name>
   <description>Australia/Darwin</description>
   <Point>
-    <coordinates>130.8252,-15.6654</coordinates>
+    <coordinates>130.841766,-12.462820</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -762,13 +762,6 @@
   <description>Europe/Berlin</description>
   <Point>
     <coordinates>13.4115,52.5235</coordinates>
-  </Point>
-</Placemark>
-<Placemark>
-  <name>Bern</name>
-  <description>Europe/Bern</description>
-  <Point>
-    <coordinates>7.4397,46.9525</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -958,6 +951,13 @@
   <description>Europe/Zagreb</description>
   <Point>
    <coordinates>15.9778,45.8130</coordinates>
+  </Point>
+</Placemark>
+<Placemark>
+  <name>Zurich</name>
+  <description>Europe/Zurich</description>
+  <Point>
+    <coordinates>8.539182,47.368649</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1196,7 +1196,7 @@
   <name>Cordoba</name>
   <description>America/Cordoba</description>
   <Point>
-    <coordinates>-4.7792,37.8847</coordinates>
+    <coordinates>-64.182129,-31.398930</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1280,7 +1280,7 @@
   <name>Ensenada</name>
   <description>America/Ensenada</description>
   <Point>
-    <coordinates>-106.0877,34.8908</coordinates>
+    <coordinates>-116.605820,31.860315</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1315,7 +1315,7 @@
   <name>Grenada</name>
   <description>America/Grenada</description>
   <Point>
-    <coordinates>-3.5979,37.1765</coordinates>
+    <coordinates>-89.808418,33.769005</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1343,14 +1343,14 @@
   <name>Halifax</name>
   <description>America/Halifax</description>
   <Point>
-    <coordinates>-1.8616,53.7244</coordinates>
+    <coordinates>-63.575321,44.648861</coordinates>
   </Point>
 </Placemark>
 <Placemark>
   <name>Hermosillo</name>
   <description>America/Hermosillo</description>
   <Point>
-    <coordinates>-70.6789,-33.5240</coordinates>
+    <coordinates>-110.961327,29.089186</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1469,7 +1469,7 @@
   <name>Mazatlan</name>
   <description>America/Mazatlan</description>
   <Point>
-    <coordinates>-117.6331,33.6537</coordinates>
+    <coordinates>-106.415276,23.236111</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1567,7 +1567,7 @@
   <name>Nome</name>
   <description>America/Nome</description>
   <Point>
-    <coordinates>-94.4173,30.0365</coordinates>
+    <coordinates>-165.406387,64.501114</coordinates>
   </Point>
 </Placemark>
 <Placemark>
@@ -1683,10 +1683,10 @@
   </Point>
 </Placemark>
 <Placemark>
-  <name>Santa Cruz de Tenerife</name>
-  <description>Europe/Tenerife</description>
+  <name>Canary Islands</name>
+  <description>Atlantic/Canary_Islands</description>
   <Point>
-    <coordinates>-16.2546,28.4682</coordinates>
+    <coordinates>-15.440883,28.113153</coordinates>
   </Point>
 </Placemark>
 <Placemark>
